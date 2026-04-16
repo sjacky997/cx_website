@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Cx · AI image gen + mobile frame</title>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Puter AI (global) -->
+  <script src="https://js.puter.com/v2/"></script>
+  <!-- React & ReactDOM -->
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <!-- Babel -->
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.5/babel.min.js"></script>
+  <style>
+    * {
+      font-family: 'Aptos', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+    }
+    .scrollable-chat::-webkit-scrollbar, .scrollable-contacts::-webkit-scrollbar {
+      width: 4px;
+    }
+    .scrollable-chat::-webkit-scrollbar-thumb, .scrollable-contacts::-webkit-scrollbar-thumb {
+      background: #3a3a3a;
+      border-radius: 20px;
+    }
+    .phone-frame {
+      box-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.7), 0 0 0 2px rgba(255, 255, 255, 0.02);
+    }
+  </style>
+</head>
+<body class="bg-neutral-900 flex items-center justify-center min-h-screen p-4 m-0">
+  <div id="root" class="w-full flex justify-center"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef, useCallback } = React;
+
+    // ---------- Puter AI wrapper (returns image element) ----------
+    const generateImageWithPuter = (prompt) => {
+      return new Promise((resolve, reject) => {
+        if (!window.puter || !puter.ai || !puter.ai.txt2img) {
+          reject(new Error('Puter AI not available'));
+          return;
+        }
+        // puter.ai.txt2img returns an image element directly, or might be async.
+        // According to docs, it's synchronous? We wrap to handle potential promise.
+        try {
+          const result = puter.ai.txt2img(prompt);
+          // result could be an image element or a promise
+          if (result instanceof HTMLImageElement) {
+            resolve(result);
+          } else if (result && typeof result.then === 'function') {
+            result.then(resolve).catch(reject);
+          } else {
+            // fallback: wait a bit (some implementations need a moment)
+            setTimeout(() => {
+              const img = puter.ai.txt2img(prompt);
+              if (img instanceof HTMLImageElement) resolve(img);
+              else reject(new Error('Unexpected response from Puter'));
+            }, 50);
+          }
+        } catch (e) {
+          reject(e);
+        }
+      });
+    };
+
+    // ---------- main App ----------
+    const App = () => {
+      const [view, setView] = useState('login');
+      const [loading, setLoading] = useState(false);
+      
+      const [searchInput, setSearchInput] = useState('');
+      // chat content: text response OR generated image element / src
+      const [chatContent, setChatContent] = useState(null); // { type: 'text', value: string } or { type: 'image', src: string, element?: HTMLImageElement }
+      const [uploadedImage, setUploadedImage] = useState(null); // { file, previewUrl }
+      
+      const [userId, setUserId] = useState('');
+      const [password, setPassword] = useState('');
+
+      const handleLogin = (e) => {
+        e?.preventDefault();
+        setView('chat');
+      };
+
+      const handleSearchSubmit = async (e) => {
+        e?.preventDefault();
+        const prompt = searchInput.trim() || "A peaceful mountain landscape at sunset";
+        
+        setLoading(true);
+        setView('loading');
+        
+        try {
+          // Generate image via Puter AI
+          const imageElement = await generateImageWithPuter(prompt);
+          
+          // Convert image element to a displayable format (use its src)
+          const imgSrc = imageElement.src;
+          
+          // Also keep a copy of the element for potential future use, but we display via src
+          setChatContent({
+            type: 'image',
+            src: imgSrc,
+            element: imageElement,
+            promptUsed: prompt
+          });
+          
+          // Clear search input optionally? keep for context.
+        } catch (err) {
+          console.error('Puter AI error:', err);
+          setChatContent({
+            type: 'text',
+            value: `⚠️ Failed to generate image: ${err.message || 'Unknown error'}. Please try again.`
+          });
+        } finally {
+          setLoading(false);
+          setView('chat');
+        }
+      };
+
+      const navigateTo = (destination) => {
+        if (destination === 'home') setView('home');
+        else if (destination === 'chat') setView('chat');
+        else if (destination === 'contact') setView('contact');
+      };
+
+      return (
+        <div className="phone-frame w-[375px] h-[812px] max-w-full bg-black rounded-[40px] overflow-hidden flex flex-col relative text-white border border-neutral-800/60">
+          {view !== 'login' && (
+            <NavBar 
+              currentView={view} 
+              onNavigate={navigateTo} 
+            />
+          )}
+          
+          <div className="flex-1 flex flex-col overflow-hidden">
+            {view === 'login' && (
+              <LoginScreen 
+                userId={userId}
+                setUserId={setUserId}
+                password={password}
+                setPassword={setPassword}
+                onEnter={handleLogin}
+              />
+            )}
+            
+            {view === 'chat' && (
+              <ChatInterface 
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
+                onSubmit={handleSearchSubmit}
+                chatContent={chatContent}
+                setChatContent={setChatContent}
+                uploadedImage={uploadedImage}
+                setUploadedImage={setUploadedImage}
+              />
+            )}
+            
+            {view === 'loading' && <LoadingScreen />}
+            
+            {view === 'home' && (
+              <PlaceholderScreen title="Home" message="Welcome to your Home dashboard." />
+            )}
+            
+            {view === 'contact' && <ContactScreen />}
+          </div>
+        </div>
+      );
+    };
+
+    // ---------- NavBar (with "亖" dropdown) ----------
+    const NavBar = ({ currentView, onNavigate }) => {
+      const [menuOpen, setMenuOpen] = useState(false);
+      const menuRef = useRef(null);
+      const buttonRef = useRef(null);
+
+      useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (
+            menuOpen &&
+            menuRef.current &&
+            !menuRef.current.contains(event.target) &&
+            buttonRef.current &&
+            !buttonRef.current.contains(event.target)
+          ) {
+            setMenuOpen(false);
+          }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+      }, [menuOpen]);
+
+      const handleMenuSelect = (option) => {
+        if (option === 'Home') onNavigate('home');
+        else if (option === 'Chat') onNavigate('chat');
+        else if (option === 'Contact us') onNavigate('contact');
+        setMenuOpen(false);
+      };
+
+      return (
+        <div className="relative w-full bg-black pt-5 pb-2 px-4 border-b border-neutral-800/40">
+          <div className="flex items-center justify-between">
+            <div className="w-8"></div>
+            <span className="text-white text-lg font-semibold tracking-wide" style={{ fontFamily: 'Aptos, sans-serif' }}>
+              Chat
+            </span>
+            <button
+              ref={buttonRef}
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="w-8 h-8 flex items-center justify-center text-2xl leading-6 text-white hover:bg-neutral-800 rounded-full transition"
+              aria-label="Menu"
+            >
+              亖
+            </button>
+          </div>
+          
+          {menuOpen && (
+            <div 
+              ref={menuRef}
+              className="absolute right-4 top-14 w-36 bg-neutral-900 border border-neutral-700 rounded-xl shadow-2xl z-50 py-1 text-white"
+            >
+              {['Home', 'Chat', 'Contact us'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => handleMenuSelect(item)}
+                  className="w-full text-left px-4 py-2.5 text-sm hover:bg-neutral-800 transition-colors"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    // ---------- Login Screen ----------
+    const LoginScreen = ({ userId, setUserId, password, setPassword, onEnter }) => {
+      return (
+        <div className="flex flex-col h-full w-full px-6 justify-center">
+          <h1 className="text-3xl font-bold text-center mb-10 tracking-tight">Welcome to Cx!</h1>
+          
+          <div className="space-y-5">
+            <input
+              type="text"
+              placeholder="UserID"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+              className="w-full bg-transparent border border-neutral-600 rounded-xl px-4 py-3 text-white placeholder-neutral-400 focus:outline-none focus:border-white"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full bg-transparent border border-neutral-600 rounded-xl px-4 py-3 text-white placeholder-neutral-400 focus:outline-none focus:border-white"
+            />
+          </div>
+          
+          <button
+            onClick={onEnter}
+            className="mt-8 w-full bg-white text-black font-semibold py-3 rounded-xl hover:bg-neutral-200 transition"
+          >
+            Enter
+          </button>
+          
+          <div className="flex justify-between mt-4 text-sm text-neutral-300">
+            <button className="hover:text-white underline-offset-2 hover:underline">Sign In</button>
+            <button className="hover:text-white underline-offset-2 hover:underline">Forgot Password</button>
+          </div>
+        </div>
+      );
+    };
+
+    // ---------- Chat Interface (with image upload + AI display) ----------
+    const ChatInterface = ({ searchInput, setSearchInput, onSubmit, chatContent, setChatContent, uploadedImage, setUploadedImage }) => {
+      const fileInputRef = useRef(null);
+      const contentEndRef = useRef(null);
+
+      const handleUploadClick = () => {
+        fileInputRef.current?.click();
+      };
+
+      const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+          const previewUrl = URL.createObjectURL(file);
+          setUploadedImage({ file, previewUrl });
+        }
+        e.target.value = null;
+      };
+
+      const handleClearImage = () => {
+        if (uploadedImage?.previewUrl) {
+          URL.revokeObjectURL(uploadedImage.previewUrl);
+        }
+        setUploadedImage(null);
+      };
+
+      // Cleanup preview URL
+      useEffect(() => {
+        return () => {
+          if (uploadedImage?.previewUrl) {
+            URL.revokeObjectURL(uploadedImage.previewUrl);
+          }
+        };
+      }, [uploadedImage]);
+
+      // Auto-scroll to bottom when new content appears
+      useEffect(() => {
+        contentEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, [chatContent, uploadedImage]);
+
+      return (
+        <>
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            className="hidden"
+          />
+
+          <div className="flex-1 overflow-y-auto p-4 scrollable-chat space-y-4">
+            {/* Uploaded image preview (local) */}
+            {uploadedImage && (
+              <div className="relative bg-neutral-900/60 border border-neutral-800 rounded-2xl p-2">
+                <div className="flex items-start justify-between mb-1">
+                  <span className="text-xs text-neutral-400 px-1">📎 Uploaded image</span>
+                  <button 
+                    onClick={handleClearImage}
+                    className="text-neutral-400 hover:text-white text-lg leading-5 px-1"
+                    aria-label="Remove"
+                  >
+                    ×
+                  </button>
+                </div>
+                <img 
+                  src={uploadedImage.previewUrl} 
+                  alt="Upload preview" 
+                  className="w-full h-auto max-h-48 object-contain rounded-xl bg-black/40"
+                />
+                <p className="text-[10px] text-neutral-500 mt-1 truncate px-1">{uploadedImage.file.name}</p>
+              </div>
+            )}
+
+            {/* AI Generated Content / Text Response */}
+            {chatContent ? (
+              <div className="space-y-3">
+                {chatContent.type === 'text' && (
+                  <div className="bg-neutral-900/80 rounded-2xl p-4 border border-neutral-800 whitespace-pre-wrap text-sm leading-relaxed">
+                    {chatContent.value}
+                  </div>
+                )}
+                {chatContent.type === 'image' && (
+                  <div className="bg-neutral-900/60 border border-neutral-800 rounded-2xl p-3">
+                    <div className="text-xs text-neutral-400 mb-2 flex items-center gap-2">
+                      <span>🎨 AI generated: "{chatContent.promptUsed || 'image'}"</span>
+                    </div>
+                    <img 
+                      src={chatContent.src} 
+                      alt="AI generated" 
+                      className="w-full h-auto rounded-xl border border-neutral-700"
+                    />
+                    {/* If the original element is needed, it's stored but not used further */}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="h-full flex items-center justify-center text-neutral-500 text-center min-h-[200px]">
+                <p className="text-sm">Type a prompt and tap → to generate an image.<br />Or upload an image with +</p>
+              </div>
+            )}
+            <div ref={contentEndRef} />
+          </div>
+          
+          <div className="bg-black border-t border-neutral-800/60 px-3 py-2 flex items-center gap-2">
+            <button 
+              onClick={handleUploadClick}
+              className="w-10 h-10 flex items-center justify-center text-2xl text-white/80 hover:bg-neutral-800 rounded-full transition"
+            >
+              +
+            </button>
+            
+            <div className="flex-1 bg-white rounded-full px-4 py-2">
+              <input
+                type="text"
+                placeholder="Type what you like..."
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && onSubmit(e)}
+                className="w-full bg-transparent text-black placeholder-neutral-500 text-sm focus:outline-none"
+              />
+            </div>
+            
+            <button 
+              onClick={onSubmit}
+              className="w-10 h-10 flex items-center justify-center text-2xl text-white bg-white/10 rounded-full hover:bg-white/20 transition"
+            >
+              &gt;
+            </button>
+          </div>
+        </>
+      );
+    };
+
+    // ---------- Loading Screen ----------
+    const LoadingScreen = () => {
+      return (
+        <div className="flex-1 flex flex-col items-center justify-center px-6">
+          <div className="w-12 h-12 border-4 border-neutral-700 border-t-white rounded-full animate-spin mb-5"></div>
+          <p className="text-white text-base font-medium">Processing, please wait a minute.</p>
+          <p className="text-neutral-400 text-xs mt-2">Cx is generating your image ...</p>
+        </div>
+      );
+    };
+
+    // ---------- Placeholder: Home ----------
+    const PlaceholderScreen = ({ title, message }) => (
+      <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
+        <h2 className="text-2xl font-semibold mb-3">{title}</h2>
+        <p className="text-neutral-300">{message}</p>
+        <div className="mt-6 text-neutral-500 text-sm border border-neutral-800 rounded-full px-4 py-1">coming soon</div>
+      </div>
+    );
+
+    // ---------- Contact Information Page ----------
+    const ContactScreen = () => {
+      const contacts = [
+        { name: 'PD Dept. Manager', person: 'Jacky', email: 'jackylo@pdd.cx.co.hk' },
+        { name: 'MR Dept. Manager', person: 'Jackie', email: 'jackietsoi@mrd.cx.co.hk' },
+        { name: 'Secretary', person: 'Dil Maya', email: 'maya@sec.cx.co.hk' },
+        { name: 'Boss', person: 'Victor Lee', email: 'victorlee@boss.cx.co.hk' }
+      ];
+
+      return (
+        <div className="flex-1 overflow-y-auto p-4 scrollable-contacts">
+          <h2 className="text-xl font-semibold mb-4 px-1">Contact Information</h2>
+          <div className="space-y-3">
+            {contacts.map((item, idx) => (
+              <div 
+                key={idx} 
+                className="bg-neutral-900/70 border border-neutral-800 rounded-2xl p-4 hover:bg-neutral-900/90 transition-colors"
+              >
+                <div>
+                  <p className="text-white font-medium">{item.name}</p>
+                  <p className="text-lg text-white mt-0.5">{item.person}</p>
+                </div>
+                <div className="mt-2 pt-2 border-t border-neutral-800/60 flex items-center gap-2">
+                  <span className="text-neutral-400 text-xs uppercase tracking-wider">Email</span>
+                  <a 
+                    href={`mailto:${item.email}`}
+                    className="text-blue-300 text-sm break-all hover:text-blue-200 hover:underline transition"
+                  >
+                    {item.email}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-neutral-500 text-xs text-center mt-6">— Cx internal directory —</p>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
