@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Cx · auth & guest mode</title>
+  <title>Cx · final with credit card</title>
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Puter AI -->
@@ -43,7 +43,6 @@
         home: 'Home', chat: 'Chat', design: 'Design', cart: 'Cart', contactUs: 'Contact Us', logOut: 'Log Out', languages: 'Languages',
         traditionalChinese: 'Traditional Chinese', simplifiedChinese: 'Simplified Chinese', english: 'English',
         welcome: 'Welcome to Cx!', userId: 'UserID', password: 'Password', enter: 'Enter', signIn: 'Sign In', forgot: 'Forgot Password',
-        asGuest: 'As a guest',
         chatTitle: 'Chat', typePlaceholder: 'Type what you like...', processing: 'Processing, please wait a minute.',
         homeTitle: 'Home', product: 'Product', origin: 'Origin', collaboration: 'Collaboration', accessory: 'Accessory',
         designTitle: 'Design', brandLabel: 'Brand', modelLabel: 'Model', selectBrand: 'Select Brand',
@@ -51,18 +50,17 @@
         previewTitle: 'Preview', addToCart: 'Add to Cart', cancel: 'Cancel', back: 'Back',
         cartTitle: 'Cart', emptyCart: 'Your cart is empty', total: 'Total', previewCost: 'Preview the total cost',
         paymentTitle: 'Payment', totalHKD: 'Total HKD', caseCost: 'Case', subtotal: 'Subtotal', tax: 'Tax', payNow: 'Pay Now',
-        creditCardTitle: 'Credit Card',
+        howToPay: 'How would you like to pay?', alipay: 'Alipay', wechatPay: 'Wechat Pay', visa: 'Visa', master: 'Master',
+        creditCardTitle: 'Credit Card', cardholderName: 'Cardholder Name', cardNumber: 'Card Number', expiryDate: 'Expiry Date', cvv: 'CVV',
+        submitPayment: 'Submit Payment',
         contactUsTitle: 'Contact Us', contactHeading: 'Contact us', contactSubtitle: 'Contact information',
         originComing: 'Origin Page - Coming Soon', collabComing: 'Collaboration Page - Coming Soon', accComing: 'Accessory Page - Coming Soon',
-        delete: 'Delete', remove: 'Remove',
-        accessDenied: 'Please log in to access this feature.',
-        guestRestricted: 'This feature is available for members only.'
+        delete: 'Delete', remove: 'Remove', step: 'Step', cartStep: 'Cart', paymentStep: 'Payment', confirmStep: 'Confirm'
       },
       'zh-TW': {
         home: '首頁', chat: '聊天', design: '設計', cart: '購物車', contactUs: '聯絡我們', logOut: '登出', languages: '語言',
         traditionalChinese: '繁體中文', simplifiedChinese: '簡體中文', english: 'English',
         welcome: '歡迎使用 Cx！', userId: '用戶ID', password: '密碼', enter: '進入', signIn: '登入', forgot: '忘記密碼',
-        asGuest: '以訪客身分',
         chatTitle: '聊天', typePlaceholder: '輸入您想要的內容...', processing: '處理中，請稍候片刻。',
         homeTitle: '首頁', product: '產品', origin: '原創', collaboration: '聯名', accessory: '配件',
         designTitle: '設計', brandLabel: '品牌', modelLabel: '型號', selectBrand: '選擇品牌',
@@ -70,18 +68,17 @@
         previewTitle: '預覽', addToCart: '加入購物車', cancel: '取消', back: '返回',
         cartTitle: '購物車', emptyCart: '您的購物車是空的', total: '總計', previewCost: '預覽總費用',
         paymentTitle: '付款', totalHKD: '總額 HKD', caseCost: '手機殼', subtotal: '小計', tax: '稅金', payNow: '立即付款',
-        creditCardTitle: '信用卡',
+        howToPay: '您想如何付款？', alipay: '支付寶', wechatPay: '微信支付', visa: 'Visa', master: 'Master',
+        creditCardTitle: '信用卡', cardholderName: '持卡人姓名', cardNumber: '卡號', expiryDate: '有效期限', cvv: 'CVV',
+        submitPayment: '提交付款',
         contactUsTitle: '聯絡我們', contactHeading: '聯絡我們', contactSubtitle: '聯絡資訊',
         originComing: '原創頁面 - 敬請期待', collabComing: '聯名頁面 - 敬請期待', accComing: '配件頁面 - 敬請期待',
-        delete: '刪除', remove: '移除',
-        accessDenied: '請登入以使用此功能。',
-        guestRestricted: '此功能僅限會員使用。'
+        delete: '刪除', remove: '移除', step: '步驟', cartStep: '購物車', paymentStep: '付款', confirmStep: '確認'
       },
       'zh-CN': {
         home: '首页', chat: '聊天', design: '设计', cart: '购物车', contactUs: '联系我们', logOut: '退出', languages: '语言',
         traditionalChinese: '繁体中文', simplifiedChinese: '简体中文', english: 'English',
         welcome: '欢迎使用 Cx！', userId: '用户ID', password: '密码', enter: '进入', signIn: '登录', forgot: '忘记密码',
-        asGuest: '以访客身份',
         chatTitle: '聊天', typePlaceholder: '输入您想要的内容...', processing: '处理中，请稍候片刻。',
         homeTitle: '首页', product: '产品', origin: '原创', collaboration: '联名', accessory: '配件',
         designTitle: '设计', brandLabel: '品牌', modelLabel: '型号', selectBrand: '选择品牌',
@@ -89,12 +86,12 @@
         previewTitle: '预览', addToCart: '加入购物车', cancel: '取消', back: '返回',
         cartTitle: '购物车', emptyCart: '您的购物车是空的', total: '总计', previewCost: '预览总费用',
         paymentTitle: '付款', totalHKD: '总额 HKD', caseCost: '手机壳', subtotal: '小计', tax: '税费', payNow: '立即付款',
-        creditCardTitle: '信用卡',
+        howToPay: '您想如何付款？', alipay: '支付宝', wechatPay: '微信支付', visa: 'Visa', master: 'Master',
+        creditCardTitle: '信用卡', cardholderName: '持卡人姓名', cardNumber: '卡号', expiryDate: '有效期', cvv: 'CVV',
+        submitPayment: '提交付款',
         contactUsTitle: '联系我们', contactHeading: '联系我们', contactSubtitle: '联系信息',
         originComing: '原创页面 - 敬请期待', collabComing: '联名页面 - 敬请期待', accComing: '配件页面 - 敬请期待',
-        delete: '删除', remove: '移除',
-        accessDenied: '请登录以使用此功能。',
-        guestRestricted: '此功能仅限会员使用。'
+        delete: '删除', remove: '移除', step: '步骤', cartStep: '购物车', paymentStep: '付款', confirmStep: '确认'
       }
     };
     const LanguageProvider = ({ children }) => {
@@ -104,22 +101,15 @@
     };
     const useTranslation = () => useContext(LanguageContext);
 
-    // ---------- Auth Context ----------
-    const AuthContext = createContext();
-    const AuthProvider = ({ children }) => {
-      const [authStatus, setAuthStatus] = useState('none'); // 'authenticated', 'guest', 'none'
-      const login = () => setAuthStatus('authenticated');
-      const guestLogin = () => setAuthStatus('guest');
-      const logout = () => setAuthStatus('none');
-      const isAuthenticated = authStatus === 'authenticated';
-      const isGuest = authStatus === 'guest';
-      return (
-        <AuthContext.Provider value={{ authStatus, isAuthenticated, isGuest, login, guestLogin, logout }}>
-          {children}
-        </AuthContext.Provider>
-      );
+    // ---------- Brand/Model mapping ----------
+    const BRAND_MODELS = {
+      apple: ['iPhone 17 Pro Max','iPhone 17 Pro','iPhone 16','iPhone 15 Pro'],
+      samsung: ['Galaxy S25 Ultra','Galaxy S24','Galaxy Z Fold6','Galaxy Z Flip6'],
+      sony: ['Xperia 1 VI','Xperia 5 V','Xperia 10 VI'],
+      Huawei: ['Pura 70 Ultra','Mate 60 Pro','P60 Pro'],
+      Vivo: ['X100 Pro','X Fold3','V30 Pro'],
+      Honor: ['Magic 6 Pro','Magic V2','Magic 6 Lite']
     };
-    const useAuth = () => useContext(AuthContext);
 
     // ---------- Cart Context ----------
     const CartContext = createContext();
@@ -137,43 +127,6 @@
     };
     const useCart = () => useContext(CartContext);
 
-    // ---------- Brand/Model mapping ----------
-    const BRAND_MODELS = {
-      apple: ['iPhone 17 Pro Max','iPhone 17 Pro','iPhone 16','iPhone 15 Pro'],
-      samsung: ['Galaxy S25 Ultra','Galaxy S24','Galaxy Z Fold6','Galaxy Z Flip6'],
-      sony: ['Xperia 1 VI','Xperia 5 V','Xperia 10 VI'],
-      Huawei: ['Pura 70 Ultra','Mate 60 Pro','P60 Pro'],
-      Vivo: ['X100 Pro','X Fold3','V30 Pro'],
-      Honor: ['Magic 6 Pro','Magic V2','Magic 6 Lite']
-    };
-
-    // ---------- Protected Route Wrapper ----------
-    const ProtectedPage = ({ children, redirectTo = 'home' }) => {
-      const { isAuthenticated, isGuest } = useAuth();
-      const { t } = useTranslation();
-      const [showToast, setShowToast] = useState(false);
-      
-      useEffect(() => {
-        if (isGuest) {
-          setShowToast(true);
-          const timer = setTimeout(() => setShowToast(false), 2000);
-          return () => clearTimeout(timer);
-        }
-      }, [isGuest]);
-      
-      if (isAuthenticated) return children;
-      if (isGuest) {
-        return (
-          <div className="flex-1 flex flex-col items-center justify-center p-6">
-            <p className="text-neutral-300 text-center mb-4">{t('guestRestricted')}</p>
-            {showToast && <div className="fixed bottom-20 bg-red-600 text-white px-4 py-2 rounded-full text-sm">{t('accessDenied')}</div>}
-          </div>
-        );
-      }
-      // not logged in at all: redirect to login (handled by parent)
-      return null;
-    };
-
     // ---------- Main App ----------
     const App = () => {
       const [view, setView] = useState('login');
@@ -185,8 +138,8 @@
       const [designBrand, setDesignBrand] = useState('apple');
       const [designModel, setDesignModel] = useState(BRAND_MODELS.apple[0]);
       const [previewContext, setPreviewContext] = useState(null);
+      const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
       const { t } = useTranslation();
-      const { isAuthenticated, isGuest, login, guestLogin, logout } = useAuth();
       
       const previousViewRef = useRef('chat');
       useEffect(() => { if (view !== 'loading') previousViewRef.current = view; }, [view]);
@@ -206,9 +159,7 @@
         return 'Cx';
       };
 
-      const handleLogin = (e) => { e?.preventDefault(); login(); setView('home'); };
-      const handleGuest = () => { guestLogin(); setView('home'); };
-      
+      const handleLogin = (e) => { e?.preventDefault(); setView('chat'); };
       const handleChatSubmit = async (e) => {
         e?.preventDefault(); const prompt = searchInput.trim() || "A peaceful mountain landscape at sunset";
         setLoading(true); setView('loading');
@@ -218,12 +169,7 @@
       };
       
       const navigateTo = (dest) => {
-        if (dest === 'logout') { logout(); setView('login'); setUserId(''); setPassword(''); return; }
-        // Guest restriction: only allow home
-        if (isGuest && dest !== 'home') {
-          alert(t('accessDenied'));
-          return;
-        }
+        if (dest === 'logout') { setView('login'); setUserId(''); setPassword(''); return; }
         const map = { home:'home', chat:'chat', design:'design', cart:'cart', contact:'contact', 
                       origin:'origin', collaboration:'collaboration', accessory:'accessory', payment:'payment', creditcard:'creditcard' };
         if (map[dest]) { setView(map[dest]); if (dest === 'design') setPreviewContext(null); }
@@ -234,31 +180,30 @@
         setView('preview'); 
       };
 
-      // Redirect if not logged in and trying to access restricted page
-      useEffect(() => {
-        const restrictedViews = ['chat', 'design', 'preview', 'cart', 'payment', 'creditcard', 'contact', 'origin', 'collaboration', 'accessory'];
-        if (restrictedViews.includes(view) && !isAuthenticated && !isGuest) setView('login');
-        if (isGuest && restrictedViews.includes(view)) setView('home');
-      }, [view, isAuthenticated, isGuest]);
+      const handlePaymentMethodSelect = (method) => {
+        setSelectedPaymentMethod(method);
+        if (method === 'visa' || method === 'master') navigateTo('creditcard');
+        else alert(`${method} selected — demo flow.`);
+      };
 
       return (
         <CartProvider>
           <div className="phone-frame w-[375px] h-[812px] max-w-full bg-black rounded-[40px] overflow-hidden flex flex-col text-white border border-neutral-800/60">
             {view !== 'login' && <NavBar title={getHeaderTitle()} onNavigate={navigateTo} />}
             <div className="flex-1 flex flex-col overflow-hidden">
-              {view === 'login' && <LoginScreen userId={userId} setUserId={setUserId} password={password} setPassword={setPassword} onEnter={handleLogin} onGuest={handleGuest} />}
-              {view === 'chat' && <ProtectedPage><ChatInterface searchInput={searchInput} setSearchInput={setSearchInput} onSubmit={handleChatSubmit} chatContent={chatContent} setChatContent={setChatContent} uploadedImage={uploadedImage} setUploadedImage={setUploadedImage} /></ProtectedPage>}
+              {view === 'login' && <LoginScreen userId={userId} setUserId={setUserId} password={password} setPassword={setPassword} onEnter={handleLogin} />}
+              {view === 'chat' && <ChatInterface searchInput={searchInput} setSearchInput={setSearchInput} onSubmit={handleChatSubmit} chatContent={chatContent} setChatContent={setChatContent} uploadedImage={uploadedImage} setUploadedImage={setUploadedImage} />}
               {view === 'loading' && <LoadingScreen />}
               {view === 'home' && <HomePage onNavigate={navigateTo} />}
-              {view === 'origin' && <ProtectedPage><PlaceholderScreen title={t('origin')} message={t('originComing')} /></ProtectedPage>}
-              {view === 'collaboration' && <ProtectedPage><PlaceholderScreen title={t('collaboration')} message={t('collabComing')} /></ProtectedPage>}
-              {view === 'accessory' && <ProtectedPage><PlaceholderScreen title={t('accessory')} message={t('accComing')} /></ProtectedPage>}
-              {view === 'design' && <ProtectedPage><DesignPage brand={designBrand} setBrand={setDesignBrand} model={designModel} setModel={setDesignModel} onNavigateToPreview={goToPreview} /></ProtectedPage>}
-              {view === 'preview' && previewContext && <ProtectedPage><PreviewPage context={previewContext} onBack={() => setView('design')} /></ProtectedPage>}
-              {view === 'cart' && <ProtectedPage><CartPage onCheckout={() => setView('payment')} /></ProtectedPage>}
-              {view === 'payment' && <ProtectedPage><PaymentPage onNext={() => setView('creditcard')} onBack={() => setView('cart')} /></ProtectedPage>}
-              {view === 'creditcard' && <ProtectedPage><CreditCardPage onBack={() => setView('payment')} /></ProtectedPage>}
-              {view === 'contact' && <ProtectedPage><ContactScreen /></ProtectedPage>}
+              {view === 'origin' && <PlaceholderScreen title={t('origin')} message={t('originComing')} />}
+              {view === 'collaboration' && <PlaceholderScreen title={t('collaboration')} message={t('collabComing')} />}
+              {view === 'accessory' && <PlaceholderScreen title={t('accessory')} message={t('accComing')} />}
+              {view === 'design' && <DesignPage brand={designBrand} setBrand={setDesignBrand} model={designModel} setModel={setDesignModel} onNavigateToPreview={goToPreview} />}
+              {view === 'preview' && previewContext && <PreviewPage context={previewContext} onBack={() => setView('design')} />}
+              {view === 'cart' && <CartPage onCheckout={() => setView('payment')} />}
+              {view === 'payment' && <PaymentPage onSelectPayment={handlePaymentMethodSelect} />}
+              {view === 'creditcard' && <CreditCardPage onBack={() => setView('payment')} />}
+              {view === 'contact' && <ContactScreen />}
             </div>
           </div>
         </CartProvider>
@@ -269,7 +214,6 @@
     const NavBar = ({ title, onNavigate }) => {
       const [open, setOpen] = useState(false); const [langOpen, setLangOpen] = useState(false);
       const menuRef = useRef(); const btnRef = useRef(); const { locale, setLocale, t } = useTranslation();
-      const { isGuest } = useAuth();
       useEffect(() => {
         const h = (e) => { if (open && menuRef.current && !menuRef.current.contains(e.target) && btnRef.current && !btnRef.current.contains(e.target)) setOpen(false); };
         document.addEventListener('mousedown', h); return () => document.removeEventListener('mousedown', h);
@@ -324,10 +268,10 @@
       );
     };
 
-    // ---------- Login (with "As a guest") ----------
-    const LoginScreen = ({ userId, setUserId, password, setPassword, onEnter, onGuest }) => {
+    // ---------- Login ----------
+    const LoginScreen = ({ userId, setUserId, password, setPassword, onEnter }) => {
       const { t } = useTranslation();
-      return (<div className="flex flex-col h-full px-6 justify-center"><h1 className="text-3xl font-bold text-center mb-10">{t('welcome')}</h1><div className="space-y-5"><input type="text" placeholder={t('userId')} value={userId} onChange={e => setUserId(e.target.value)} className="w-full bg-transparent border border-neutral-600 rounded-xl px-4 py-3" /><input type="password" placeholder={t('password')} value={password} onChange={e => setPassword(e.target.value)} className="w-full bg-transparent border border-neutral-600 rounded-xl px-4 py-3" /></div><button onClick={onEnter} className="mt-8 w-full bg-white text-black font-semibold py-3 rounded-xl">{t('enter')}</button><div className="flex justify-between mt-4 text-sm text-neutral-300"><button className="hover:text-white">{t('signIn')}</button><button className="hover:text-white">{t('forgot')}</button></div><button onClick={onGuest} className="mt-4 text-sm text-neutral-400 hover:text-white text-center w-full">{t('asGuest')}</button></div>);
+      return (<div className="flex flex-col h-full px-6 justify-center"><h1 className="text-3xl font-bold text-center mb-10">{t('welcome')}</h1><div className="space-y-5"><input type="text" placeholder={t('userId')} value={userId} onChange={e => setUserId(e.target.value)} className="w-full bg-transparent border border-neutral-600 rounded-xl px-4 py-3" /><input type="password" placeholder={t('password')} value={password} onChange={e => setPassword(e.target.value)} className="w-full bg-transparent border border-neutral-600 rounded-xl px-4 py-3" /></div><button onClick={onEnter} className="mt-8 w-full bg-white text-black font-semibold py-3 rounded-xl">{t('enter')}</button><div className="flex justify-between mt-4 text-sm text-neutral-300"><button className="hover:text-white">{t('signIn')}</button><button className="hover:text-white">{t('forgot')}</button></div></div>);
     };
 
     // ---------- Chat ----------
@@ -398,27 +342,103 @@
       return (<div className="flex-1 flex flex-col overflow-hidden"><div className="flex-1 overflow-y-auto cart-scroll p-3 space-y-3">{cartItems.map(item => (<div key={item.id} className="relative overflow-hidden" onTouchStart={e=>handleTouchStart(item.id,e)} onTouchMove={e=>handleTouchMove(item.id,e)} onTouchEnd={()=>handleTouchEnd(item.id)}><div className="absolute right-0 top-0 bottom-0 w-20 bg-red-600 flex items-center justify-center text-white font-medium text-sm rounded-r-xl">{t('delete')}</div><div className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-3 flex gap-3 relative transition-transform" style={{transform: `translateX(${swipeOffset[item.id]||0}px)`}}><img src={item.imageUrl} className="w-16 h-16 object-cover rounded-lg" /><div className="flex-1"><p className="font-medium text-sm">{item.model}</p><p className="text-xs text-neutral-400">{item.designType} · ${item.unitPrice}</p><div className="flex items-center gap-3 mt-2"><button onClick={()=>updateQuantity(item.id,-1)} className="w-7 h-7 rounded-full border border-neutral-600 text-lg leading-4">−</button><span className="w-6 text-center">{item.quantity}</span><button onClick={()=>updateQuantity(item.id,1)} className="w-7 h-7 rounded-full border border-neutral-600 text-lg leading-4">+</button></div></div><button onClick={()=>removeItem(item.id)} className="text-neutral-400 hover:text-white text-lg px-1">🗑️</button></div></div>))}</div><div className="p-4 border-t border-neutral-800"><div className="flex justify-between text-lg font-semibold mb-3"><span>{t('total')}</span><span>${totalCost}</span></div><button onClick={onCheckout} className="w-full bg-red-600 text-white py-3 rounded-xl font-medium">{t('previewCost')}</button></div></div>);
     };
 
-    // ---------- Payment ----------
-    const PaymentPage = ({ onNext, onBack }) => {
+    // ---------- Payment Page (with progress bar, payment options) ----------
+    const PaymentPage = ({ onSelectPayment }) => {
       const { cartItems, totalCost } = useCart(); const { t } = useTranslation();
       const [expanded, setExpanded] = useState(false);
+      const [selectedMethod, setSelectedMethod] = useState(null);
       const subtotal = totalCost; const tax = 2; const final = subtotal + tax;
-      return (<div className="flex-1 bg-white text-black flex flex-col overflow-hidden"><div className="p-4 border-b border-gray-200 flex items-center"><button onClick={onBack} className="text-2xl mr-3">&larr;</button><h2 className="text-xl font-semibold">{t('paymentTitle')}</h2></div><div className="flex-1 p-5 overflow-y-auto"><div className="border border-gray-300 rounded-xl overflow-hidden"><button onClick={()=>setExpanded(!expanded)} className="w-full flex items-center justify-between px-4 py-4 bg-gray-50"><span className="font-medium">{t('totalHKD')}</span><div className="flex items-center gap-3"><span className="text-lg font-semibold">${final}</span><span className="text-gray-500 text-xl">{expanded?'▲':'▼'}</span></div></button>{expanded && (<div className="p-4 space-y-2 border-t border-gray-200 bg-white"><div className="flex justify-between"><span>{t('caseCost')} ({cartItems.reduce((s,i)=>s+i.quantity,0)} x $10)</span><span>${subtotal}</span></div><div className="flex justify-between"><span>{t('tax')}</span><span>${tax}</span></div><div className="flex justify-between font-bold pt-2 border-t"><span>{t('total')}</span><span>${final}</span></div></div>)}</div><div className="mt-6"><button onClick={onNext} className="w-full bg-black text-white py-3 rounded-xl font-medium">{t('payNow')}</button></div></div></div>);
+      
+      const paymentMethods = [
+        { key: 'alipay', label: t('alipay'), icon: '💳' },
+        { key: 'wechat', label: t('wechatPay'), icon: '📱' },
+        { key: 'visa', label: t('visa'), icon: '💳' },
+        { key: 'master', label: t('master'), icon: '💳' }
+      ];
+
+      const handleMethodClick = (method) => {
+        setSelectedMethod(method);
+        onSelectPayment(method);
+      };
+
+      return (
+        <div className="flex-1 bg-white text-black flex flex-col overflow-hidden">
+          <div className="flex-1 overflow-y-auto p-5">
+            {/* Total dropdown */}
+            <div className="border border-gray-300 rounded-xl overflow-hidden mb-4">
+              <button onClick={()=>setExpanded(!expanded)} className="w-full flex items-center justify-between px-4 py-4 bg-gray-50">
+                <span className="font-medium">{t('totalHKD')}</span>
+                <div className="flex items-center gap-3"><span className="text-lg font-semibold">${final}</span><span className="text-gray-500 text-xl">{expanded?'▲':'▼'}</span></div>
+              </button>
+              {expanded && (
+                <div className="p-4 space-y-2 border-t border-gray-200 bg-white">
+                  <div className="flex justify-between"><span>{t('caseCost')} ({cartItems.reduce((s,i)=>s+i.quantity,0)} x $10)</span><span>${subtotal}</span></div>
+                  <div className="flex justify-between"><span>{t('tax')}</span><span>${tax}</span></div>
+                  <div className="flex justify-between font-bold pt-2 border-t"><span>{t('total')}</span><span>${final}</span></div>
+                </div>
+              )}
+            </div>
+
+            {/* Progress bar (Cart → Payment → Confirm) */}
+            <div className="flex items-center justify-between mb-6 px-2">
+              <div className="flex flex-col items-center"><div className="w-3 h-3 rounded-full bg-gray-400"></div><span className="text-xs mt-1 text-gray-500">{t('cartStep')}</span></div>
+              <div className="flex-1 h-0.5 bg-gray-300 mx-1"></div>
+              <div className="flex flex-col items-center"><div className="w-3 h-3 rounded-full bg-black"></div><span className="text-xs mt-1 font-medium">{t('paymentStep')}</span></div>
+              <div className="flex-1 h-0.5 bg-gray-300 mx-1"></div>
+              <div className="flex flex-col items-center"><div className="w-3 h-3 rounded-full bg-gray-400"></div><span className="text-xs mt-1 text-gray-500">{t('confirmStep')}</span></div>
+            </div>
+
+            {/* Payment method question */}
+            <h3 className="text-lg font-semibold mb-3">{t('howToPay')}</h3>
+            <div className="grid grid-cols-2 gap-3">
+              {paymentMethods.map(m => (
+                <button key={m.key} onClick={() => handleMethodClick(m.key)} className={`border rounded-xl p-4 flex flex-col items-center gap-1 transition ${selectedMethod === m.key ? 'border-black bg-gray-100' : 'border-gray-300 hover:bg-gray-50'}`}>
+                  <span className="text-2xl">{m.icon}</span>
+                  <span className="text-sm font-medium">{m.label}</span>
+                </button>
+              ))}
+            </div>
+            {selectedMethod && (selectedMethod === 'alipay' || selectedMethod === 'wechat') && (
+              <p className="text-xs text-gray-500 mt-3 text-center">Demo: {selectedMethod} selected.</p>
+            )}
+          </div>
+        </div>
+      );
     };
 
-    // ---------- Credit Card (placeholder) ----------
+    // ---------- Credit Card Page (white bg) ----------
     const CreditCardPage = ({ onBack }) => {
       const { t } = useTranslation();
-      return (<div className="flex-1 bg-white text-black flex flex-col overflow-hidden"><div className="p-4 border-b border-gray-200 flex items-center"><button onClick={onBack} className="text-2xl mr-3">&larr;</button><h2 className="text-xl font-semibold">{t('creditCardTitle')}</h2></div><div className="flex-1 flex items-center justify-center text-gray-500">Credit card form placeholder</div></div>);
+      const [form, setForm] = useState({ name: '', number: '', expiry: '', cvv: '' });
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!form.name || !form.number || !form.expiry || !form.cvv) { alert('Please fill all fields'); return; }
+        alert('✅ Payment simulated — thank you!');
+        // navigate home or stay
+      };
+      return (
+        <div className="flex-1 bg-white text-black flex flex-col overflow-hidden">
+          <div className="p-4 border-b border-gray-200 flex items-center">
+            <button onClick={onBack} className="text-2xl mr-3">&larr;</button>
+            <h2 className="text-xl font-semibold">{t('creditCardTitle')}</h2>
+          </div>
+          <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-5 space-y-4">
+            <div><label className="block text-sm font-medium mb-1">{t('cardholderName')}</label><input type="text" value={form.name} onChange={e=>setForm({...form,name:e.target.value})} className="w-full border border-gray-300 rounded-lg px-4 py-3" placeholder="John Doe" /></div>
+            <div><label className="block text-sm font-medium mb-1">{t('cardNumber')}</label><input type="text" value={form.number} onChange={e=>setForm({...form,number:e.target.value})} className="w-full border border-gray-300 rounded-lg px-4 py-3" placeholder="1234 5678 9012 3456" /></div>
+            <div className="flex gap-3"><div className="flex-1"><label className="block text-sm font-medium mb-1">{t('expiryDate')}</label><input type="text" value={form.expiry} onChange={e=>setForm({...form,expiry:e.target.value})} className="w-full border border-gray-300 rounded-lg px-4 py-3" placeholder="MM/YY" /></div><div className="flex-1"><label className="block text-sm font-medium mb-1">{t('cvv')}</label><input type="text" value={form.cvv} onChange={e=>setForm({...form,cvv:e.target.value})} className="w-full border border-gray-300 rounded-lg px-4 py-3" placeholder="•••" /></div></div>
+            <div className="pt-4 flex gap-3"><button type="button" onClick={onBack} className="flex-1 py-3 border border-gray-300 rounded-full text-sm">{t('cancel')}</button><button type="submit" className="flex-1 py-3 bg-black text-white rounded-full text-sm font-medium">{t('submitPayment')}</button></div>
+          </form>
+        </div>
+      );
     };
 
     // ---------- Contact ----------
     const ContactScreen = () => { 
       const contacts = [
-        { name: 'PD Dept. Manager', person: 'Jacky', email: 'jackylo@pdd.cx.co.hk' },
-        { name: 'MR Dept. Manager', person: 'Jackie', email: 'jackietsoi@mrd.cx.co.hk' },
-        { name: 'Secretary', person: 'Dil Maya', email: 'maya@sec.cx.co.hk' },
-        { name: 'Boss', person: 'Victor Lee', email: 'victorlee@boss.cx.co.hk' }
+        { titleKey: 'pdManager', name: 'PD Dept. Manager', person: 'Jacky', email: 'jackylo@pdd.cx.co.hk' },
+        { titleKey: 'mrManager', name: 'MR Dept. Manager', person: 'Jackie', email: 'jackietsoi@mrd.cx.co.hk' },
+        { titleKey: 'secretary', name: 'Secretary', person: 'Dil Maya', email: 'maya@sec.cx.co.hk' },
+        { titleKey: 'boss', name: 'Boss', person: 'Victor Lee', email: 'victorlee@boss.cx.co.hk' }
       ]; 
       const { t } = useTranslation(); 
       return (
@@ -442,7 +462,7 @@
     };
 
     const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<LanguageProvider><AuthProvider><App /></AuthProvider></LanguageProvider>);
+    root.render(<LanguageProvider><App /></LanguageProvider>);
   </script>
 </body>
 </html>
