@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Cx · add to cart navigates</title>
+  <title>Cx · shipping & thank you</title>
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Puter AI -->
@@ -38,7 +38,7 @@
       } catch(e) { reject(e); }
     });
 
-    // ---------- Language Context (i18n) ----------
+    // ---------- Language Context (updated with new strings) ----------
     const LanguageContext = createContext();
     const translations = {
       en: {
@@ -57,6 +57,11 @@
         howToPay: 'How would you like to pay?', alipay: 'Alipay', wechatPay: 'Wechat Pay', visa: 'Visa', master: 'Master',
         creditCardTitle: 'Credit Card', cardholderName: 'Cardholder Name', cardNumber: 'Card Number', expiry: 'Expiry Date', cvv: 'CVV',
         confirmPayment: 'Confirm Payment', paymentSuccess: 'Payment successful! (simulated)',
+        shippingTitle: 'Shipping Detail', fullName: 'Full Name', address1: 'Address Line 1', address2: 'Address Line 2',
+        city: 'City', state: 'State/Province', postal: 'Postal Code', country: 'Country', phone: 'Phone Number',
+        confirmOrder: 'Confirm Order',
+        thankYouTitle: 'Thank You', thankYouMessage: 'Thank you for buying', deliveryTracking: 'Delivery Tracking',
+        trackingSoon: 'Tracking information will be available soon.',
         contactUsTitle: 'Contact Us', contactHeading: 'Contact us', contactSubtitle: 'Contact information',
         originComing: 'Origin Page - Coming Soon', collabComing: 'Collaboration Page - Coming Soon', accComing: 'Accessory Page - Coming Soon',
         delete: 'Delete', remove: 'Remove', accessDenied: 'Please sign in to access this feature.', guestRestricted: 'This feature is available for members only.'
@@ -77,6 +82,11 @@
         howToPay: '您想如何付款？', alipay: '支付寶', wechatPay: '微信支付', visa: 'Visa', master: 'Master',
         creditCardTitle: '信用卡', cardholderName: '持卡人姓名', cardNumber: '卡號', expiry: '到期日', cvv: 'CVV',
         confirmPayment: '確認付款', paymentSuccess: '付款成功！(模擬)',
+        shippingTitle: '配送資訊', fullName: '全名', address1: '地址第一行', address2: '地址第二行',
+        city: '城市', state: '州/省', postal: '郵遞區號', country: '國家', phone: '電話號碼',
+        confirmOrder: '確認訂單',
+        thankYouTitle: '感謝您', thankYouMessage: '感謝您的購買', deliveryTracking: '配送追蹤',
+        trackingSoon: '追蹤資訊即將提供。',
         contactUsTitle: '聯絡我們', contactHeading: '聯絡我們', contactSubtitle: '聯絡資訊',
         originComing: '原創頁面 - 敬請期待', collabComing: '聯名頁面 - 敬請期待', accComing: '配件頁面 - 敬請期待',
         delete: '刪除', remove: '移除', accessDenied: '請登入以使用此功能。', guestRestricted: '此功能僅限會員使用。'
@@ -97,6 +107,11 @@
         howToPay: '您想如何付款？', alipay: '支付宝', wechatPay: '微信支付', visa: 'Visa', master: 'Master',
         creditCardTitle: '信用卡', cardholderName: '持卡人姓名', cardNumber: '卡号', expiry: '到期日', cvv: 'CVV',
         confirmPayment: '确认付款', paymentSuccess: '付款成功！(模拟)',
+        shippingTitle: '配送信息', fullName: '全名', address1: '地址第一行', address2: '地址第二行',
+        city: '城市', state: '州/省', postal: '邮政编码', country: '国家', phone: '电话号码',
+        confirmOrder: '确认订单',
+        thankYouTitle: '感谢您', thankYouMessage: '感谢您的购买', deliveryTracking: '配送追踪',
+        trackingSoon: '追踪信息即将提供。',
         contactUsTitle: '联系我们', contactHeading: '联系我们', contactSubtitle: '联系信息',
         originComing: '原创页面 - 敬请期待', collabComing: '联名页面 - 敬请期待', accComing: '配件页面 - 敬请期待',
         delete: '删除', remove: '移除', accessDenied: '请登录以使用此功能。', guestRestricted: '此功能仅限会员使用。'
@@ -187,6 +202,8 @@
         if (view === 'contact') return t('contactUsTitle');
         if (view === 'payment') return t('paymentTitle');
         if (view === 'creditcard') return t('creditCardTitle');
+        if (view === 'shipping') return t('shippingTitle');
+        if (view === 'thankyou') return t('thankYouTitle');
         if (view === 'origin') return t('origin');
         if (view === 'collaboration') return t('collaboration');
         if (view === 'accessory') return t('accessory');
@@ -209,7 +226,8 @@
         if (dest === 'logout') { logout(); setView('login'); setUserId(''); setPassword(''); return; }
         if (isGuest && dest !== 'home') { alert(t('accessDenied')); return; }
         const map = { home:'home', chat:'chat', design:'design', cart:'cart', contact:'contact', 
-                      origin:'origin', collaboration:'collaboration', accessory:'accessory', payment:'payment', creditcard:'creditcard' };
+                      origin:'origin', collaboration:'collaboration', accessory:'accessory', payment:'payment', 
+                      creditcard:'creditcard', shipping:'shipping', thankyou:'thankyou' };
         if (map[dest]) { setView(map[dest]); if (dest === 'design') { setDesignBrand(''); setDesignModel(''); setDesignContext(null); } }
       };
 
@@ -225,7 +243,7 @@
       };
 
       useEffect(() => {
-        const restricted = ['chat', 'design', 'designSelection', 'preview', 'cart', 'payment', 'creditcard', 'contact', 'origin', 'collaboration', 'accessory'];
+        const restricted = ['chat', 'design', 'designSelection', 'preview', 'cart', 'payment', 'creditcard', 'shipping', 'thankyou', 'contact', 'origin', 'collaboration', 'accessory'];
         if (restricted.includes(view) && !isAuthenticated && !isGuest) setView('login');
         if (isGuest && restricted.includes(view)) setView('home');
       }, [view, isAuthenticated, isGuest]);
@@ -239,15 +257,17 @@
               {view === 'chat' && <ProtectedPage><ChatInterface searchInput={searchInput} setSearchInput={setSearchInput} onSubmit={handleChatSubmit} chatContent={chatContent} setChatContent={setChatContent} uploadedImage={uploadedImage} setUploadedImage={setUploadedImage} /></ProtectedPage>}
               {view === 'loading' && <LoadingScreen />}
               {view === 'home' && <HomePage onNavigate={navigateTo} />}
-              {view === 'origin' && <ProtectedPage><PlaceholderScreen title={t('origin')} message={t('originComing')} /></ProtectedPage>}
-              {view === 'collaboration' && <ProtectedPage><PlaceholderScreen title={t('collaboration')} message={t('collabComing')} /></ProtectedPage>}
-              {view === 'accessory' && <ProtectedPage><PlaceholderScreen title={t('accessory')} message={t('accComing')} /></ProtectedPage>}
+              {view === 'origin' && <ProtectedPage><OriginCollaborationAccessoryPage title={t('origin')} message={t('originComing')} onBack={() => setView('home')} /></ProtectedPage>}
+              {view === 'collaboration' && <ProtectedPage><OriginCollaborationAccessoryPage title={t('collaboration')} message={t('collabComing')} onBack={() => setView('home')} /></ProtectedPage>}
+              {view === 'accessory' && <ProtectedPage><OriginCollaborationAccessoryPage title={t('accessory')} message={t('accComing')} onBack={() => setView('home')} /></ProtectedPage>}
               {view === 'design' && <ProtectedPage><DesignBrandModelPage brand={designBrand} setBrand={setDesignBrand} model={designModel} setModel={setDesignModel} onSubmit={handleDesignSubmit} /></ProtectedPage>}
               {view === 'designSelection' && designContext && <ProtectedPage><DesignSelectionPage context={designContext} onBack={() => setView('design')} onNavigateToPreview={goToPreview} /></ProtectedPage>}
               {view === 'preview' && previewContext && <ProtectedPage><PreviewPage context={previewContext} onBack={() => setView('designSelection')} onAddAndGoToCart={() => setView('cart')} /></ProtectedPage>}
               {view === 'cart' && <ProtectedPage><CartPage onCheckout={() => setView('payment')} /></ProtectedPage>}
               {view === 'payment' && <ProtectedPage><PaymentPage onNext={(method) => { setSelectedPaymentMethod(method); setView('creditcard'); }} onBack={() => setView('cart')} /></ProtectedPage>}
-              {view === 'creditcard' && <ProtectedPage><CreditCardPage method={selectedPaymentMethod} onBack={() => setView('payment')} onSuccess={() => { alert(t('paymentSuccess')); setView('home'); }} /></ProtectedPage>}
+              {view === 'creditcard' && <ProtectedPage><CreditCardPage method={selectedPaymentMethod} onBack={() => setView('payment')} onConfirm={() => setView('shipping')} /></ProtectedPage>}
+              {view === 'shipping' && <ProtectedPage><ShippingPage onConfirm={() => setView('thankyou')} onBack={() => setView('creditcard')} /></ProtectedPage>}
+              {view === 'thankyou' && <ProtectedPage><ThankYouPage onTrack={() => alert(t('trackingSoon'))} /></ProtectedPage>}
               {view === 'contact' && <ProtectedPage><ContactScreen /></ProtectedPage>}
             </div>
           </div>
@@ -322,9 +342,8 @@
     };
 
     const LoadingScreen = () => { const { t } = useTranslation(); return (<div className="flex-1 flex flex-col items-center justify-center"><div className="w-12 h-12 border-4 border-neutral-700 border-t-white rounded-full animate-spin mb-5"></div><p className="text-white font-medium">{t('processing')}</p><p className="text-neutral-400 text-xs mt-2">Cx AI</p></div>); };
-    const PlaceholderScreen = ({ title, message }) => (<div className="flex-1 flex flex-col items-center justify-center p-6"><h2 className="text-2xl font-semibold mb-3">{title}</h2><p className="text-neutral-300">{message}</p></div>);
 
-    // ---------- Home (with discount) ----------
+    // ---------- Home ----------
     const HomePage = ({ onNavigate }) => {
       const { t } = useTranslation();
       const categories = [{ key: 'origin', label: t('origin'), icon: '🌱' },{ key: 'collaboration', label: t('collaboration'), icon: '🤝' },{ key: 'accessory', label: t('accessory'), icon: '🔌' }];
@@ -338,6 +357,21 @@
             <p className="text-green-300 font-bold text-base">{t('discountMessage')}</p>
           </div>
           <div className="flex-1 flex items-center justify-center text-neutral-500 text-sm mt-4">Featured products coming soon</div>
+        </div>
+      );
+    };
+
+    // ---------- Origin / Collaboration / Accessory (with left back button) ----------
+    const OriginCollaborationAccessoryPage = ({ title, message, onBack }) => {
+      return (
+        <div className="flex-1 flex flex-col">
+          <div className="px-4 py-3 border-b border-neutral-800 flex items-center">
+            <button onClick={onBack} className="text-2xl leading-6 mr-3">&larr;</button>
+            <span className="text-lg font-medium">{title}</span>
+          </div>
+          <div className="flex-1 flex items-center justify-center p-6">
+            <p className="text-neutral-300 text-center">{message}</p>
+          </div>
         </div>
       );
     };
@@ -431,7 +465,7 @@
       );
     };
 
-    // ---------- Preview (add to cart then navigate to cart) ----------
+    // ---------- Preview ----------
     const PreviewPage = ({ context, onBack, onAddAndGoToCart }) => {
       const { imageUrl, brand, model, designType } = context; 
       const { addToCart } = useCart(); 
@@ -494,15 +528,39 @@
     };
 
     // ---------- Credit Card ----------
-    const CreditCardPage = ({ method, onBack, onSuccess }) => {
-      const { t } = useTranslation(); const { clearCart } = useCart();
+    const CreditCardPage = ({ method, onBack, onConfirm }) => {
+      const { t } = useTranslation();
       const [cardholder, setCardholder] = useState(''); const [cardNumber, setCardNumber] = useState('');
       const [expiry, setExpiry] = useState(''); const [cvv, setCvv] = useState('');
-      const handleSubmit = (e) => { e.preventDefault(); clearCart(); onSuccess(); };
+      const handleSubmit = (e) => { e.preventDefault(); if (!cardholder || !cardNumber || !expiry || !cvv) { alert('Please fill all fields'); return; } onConfirm(); };
       return (<div className="flex-1 bg-white text-black flex flex-col overflow-hidden"><div className="p-4 border-b border-gray-200 flex items-center"><button onClick={onBack} className="text-2xl mr-3">&larr;</button><h2 className="text-xl font-semibold">{t('creditCardTitle')} ({method})</h2></div><form onSubmit={handleSubmit} className="flex-1 p-5 flex flex-col overflow-y-auto"><div className="space-y-4"><div><label className="block text-sm font-medium mb-1">{t('cardholderName')}</label><input type="text" value={cardholder} onChange={e=>setCardholder(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required /></div><div><label className="block text-sm font-medium mb-1">{t('cardNumber')}</label><input type="text" placeholder="1234 5678 9012 3456" value={cardNumber} onChange={e=>setCardNumber(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required /></div><div className="flex gap-3"><div className="flex-1"><label className="block text-sm font-medium mb-1">{t('expiry')}</label><input type="text" placeholder="MM/YY" value={expiry} onChange={e=>setExpiry(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required /></div><div className="flex-1"><label className="block text-sm font-medium mb-1">{t('cvv')}</label><input type="text" placeholder="123" value={cvv} onChange={e=>setCvv(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required /></div></div></div><div className="flex-1"></div><button type="submit" className="w-full bg-black text-white py-3 rounded-xl font-medium mt-4">{t('confirmPayment')}</button></form></div>);
     };
 
-    // ---------- Contact (with copyright) ----------
+    // ---------- Shipping Detail ----------
+    const ShippingPage = ({ onConfirm, onBack }) => {
+      const { t } = useTranslation();
+      const [fullName, setFullName] = useState(''); const [address1, setAddress1] = useState(''); const [address2, setAddress2] = useState('');
+      const [city, setCity] = useState(''); const [state, setState] = useState(''); const [postal, setPostal] = useState('');
+      const [country, setCountry] = useState(''); const [phone, setPhone] = useState('');
+      const handleSubmit = (e) => { e.preventDefault(); onConfirm(); };
+      return (<div className="flex-1 bg-white text-black flex flex-col overflow-hidden"><div className="p-4 border-b border-gray-200 flex items-center"><button onClick={onBack} className="text-2xl mr-3">&larr;</button><h2 className="text-xl font-semibold">{t('shippingTitle')}</h2></div><form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-5 flex flex-col"><div className="space-y-4"><input type="text" placeholder={t('fullName')} value={fullName} onChange={e=>setFullName(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required />
+        <input type="text" placeholder={t('address1')} value={address1} onChange={e=>setAddress1(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required />
+        <input type="text" placeholder={t('address2')} value={address2} onChange={e=>setAddress2(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" />
+        <input type="text" placeholder={t('city')} value={city} onChange={e=>setCity(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required />
+        <input type="text" placeholder={t('state')} value={state} onChange={e=>setState(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required />
+        <input type="text" placeholder={t('postal')} value={postal} onChange={e=>setPostal(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required />
+        <input type="text" placeholder={t('country')} value={country} onChange={e=>setCountry(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required />
+        <input type="text" placeholder={t('phone')} value={phone} onChange={e=>setPhone(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required /></div>
+        <div className="flex-1"></div><button type="submit" className="w-full bg-red-600 text-white py-3 rounded-xl font-medium mt-4">{t('confirmOrder')}</button></form></div>);
+    };
+
+    // ---------- Thank You ----------
+    const ThankYouPage = ({ onTrack }) => {
+      const { t } = useTranslation();
+      return (<div className="flex-1 bg-white text-black flex flex-col overflow-hidden"><div className="flex-1 flex flex-col items-center justify-center p-6"><i className="fas fa-check-circle text-6xl text-green-500 mb-4"></i><h2 className="text-2xl font-bold text-center">{t('thankYouMessage')}</h2></div><div className="p-5 border-t border-gray-200"><button onClick={onTrack} className="w-full bg-red-600 text-white py-3 rounded-xl font-medium">{t('deliveryTracking')}</button></div></div>);
+    };
+
+    // ---------- Contact ----------
     const ContactScreen = () => { 
       const contacts = [{ name: 'PD Dept. Manager', person: 'Jacky', email: 'jackylo@pdd.cx.co.hk' },{ name: 'MR Dept. Manager', person: 'Jackie', email: 'jackietsoi@mrd.cx.co.hk' },{ name: 'Secretary', person: 'Dil Maya', email: 'maya@sec.cx.co.hk' },{ name: 'Boss', person: 'Victor Lee', email: 'victorlee@boss.cx.co.hk' }]; 
       const { t } = useTranslation(); 
