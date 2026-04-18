@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Cx · final with credit card</title>
+  <title>Cx · add to cart navigates</title>
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Puter AI -->
   <script src="https://js.puter.com/v2/"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- React + Babel -->
   <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
@@ -43,55 +45,61 @@
         home: 'Home', chat: 'Chat', design: 'Design', cart: 'Cart', contactUs: 'Contact Us', logOut: 'Log Out', languages: 'Languages',
         traditionalChinese: 'Traditional Chinese', simplifiedChinese: 'Simplified Chinese', english: 'English',
         welcome: 'Welcome to Cx!', userId: 'UserID', password: 'Password', enter: 'Enter', signIn: 'Sign In', forgot: 'Forgot Password',
+        asGuest: 'As a guest',
         chatTitle: 'Chat', typePlaceholder: 'Type what you like...', processing: 'Processing, please wait a minute.',
         homeTitle: 'Home', product: 'Product', origin: 'Origin', collaboration: 'Collaboration', accessory: 'Accessory',
-        designTitle: 'Design', brandLabel: 'Brand', modelLabel: 'Model', selectBrand: 'Select Brand',
+        discountMessage: 'Limited Time Offer: 20% Off All Cases!',
+        designTitle: 'Design', brandLabel: 'Brand', modelLabel: 'Model', selectBrand: 'Select the brand', selectModel: 'Select the Model',
         fullWrap: 'Full-wrap Design', printable: 'Printable Area Only', clickUpload: 'Click to upload image',
         previewTitle: 'Preview', addToCart: 'Add to Cart', cancel: 'Cancel', back: 'Back',
         cartTitle: 'Cart', emptyCart: 'Your cart is empty', total: 'Total', previewCost: 'Preview the total cost',
         paymentTitle: 'Payment', totalHKD: 'Total HKD', caseCost: 'Case', subtotal: 'Subtotal', tax: 'Tax', payNow: 'Pay Now',
         howToPay: 'How would you like to pay?', alipay: 'Alipay', wechatPay: 'Wechat Pay', visa: 'Visa', master: 'Master',
-        creditCardTitle: 'Credit Card', cardholderName: 'Cardholder Name', cardNumber: 'Card Number', expiryDate: 'Expiry Date', cvv: 'CVV',
-        submitPayment: 'Submit Payment',
+        creditCardTitle: 'Credit Card', cardholderName: 'Cardholder Name', cardNumber: 'Card Number', expiry: 'Expiry Date', cvv: 'CVV',
+        confirmPayment: 'Confirm Payment', paymentSuccess: 'Payment successful! (simulated)',
         contactUsTitle: 'Contact Us', contactHeading: 'Contact us', contactSubtitle: 'Contact information',
         originComing: 'Origin Page - Coming Soon', collabComing: 'Collaboration Page - Coming Soon', accComing: 'Accessory Page - Coming Soon',
-        delete: 'Delete', remove: 'Remove', step: 'Step', cartStep: 'Cart', paymentStep: 'Payment', confirmStep: 'Confirm'
+        delete: 'Delete', remove: 'Remove', accessDenied: 'Please sign in to access this feature.', guestRestricted: 'This feature is available for members only.'
       },
       'zh-TW': {
         home: '首頁', chat: '聊天', design: '設計', cart: '購物車', contactUs: '聯絡我們', logOut: '登出', languages: '語言',
         traditionalChinese: '繁體中文', simplifiedChinese: '簡體中文', english: 'English',
         welcome: '歡迎使用 Cx！', userId: '用戶ID', password: '密碼', enter: '進入', signIn: '登入', forgot: '忘記密碼',
+        asGuest: '以訪客身分',
         chatTitle: '聊天', typePlaceholder: '輸入您想要的內容...', processing: '處理中，請稍候片刻。',
         homeTitle: '首頁', product: '產品', origin: '原創', collaboration: '聯名', accessory: '配件',
-        designTitle: '設計', brandLabel: '品牌', modelLabel: '型號', selectBrand: '選擇品牌',
+        discountMessage: '限時優惠：所有手機殼八折！',
+        designTitle: '設計', brandLabel: '品牌', modelLabel: '型號', selectBrand: '選擇品牌', selectModel: '選擇型號',
         fullWrap: '全包設計', printable: '僅列印區域', clickUpload: '點擊上傳圖片',
         previewTitle: '預覽', addToCart: '加入購物車', cancel: '取消', back: '返回',
         cartTitle: '購物車', emptyCart: '您的購物車是空的', total: '總計', previewCost: '預覽總費用',
         paymentTitle: '付款', totalHKD: '總額 HKD', caseCost: '手機殼', subtotal: '小計', tax: '稅金', payNow: '立即付款',
         howToPay: '您想如何付款？', alipay: '支付寶', wechatPay: '微信支付', visa: 'Visa', master: 'Master',
-        creditCardTitle: '信用卡', cardholderName: '持卡人姓名', cardNumber: '卡號', expiryDate: '有效期限', cvv: 'CVV',
-        submitPayment: '提交付款',
+        creditCardTitle: '信用卡', cardholderName: '持卡人姓名', cardNumber: '卡號', expiry: '到期日', cvv: 'CVV',
+        confirmPayment: '確認付款', paymentSuccess: '付款成功！(模擬)',
         contactUsTitle: '聯絡我們', contactHeading: '聯絡我們', contactSubtitle: '聯絡資訊',
         originComing: '原創頁面 - 敬請期待', collabComing: '聯名頁面 - 敬請期待', accComing: '配件頁面 - 敬請期待',
-        delete: '刪除', remove: '移除', step: '步驟', cartStep: '購物車', paymentStep: '付款', confirmStep: '確認'
+        delete: '刪除', remove: '移除', accessDenied: '請登入以使用此功能。', guestRestricted: '此功能僅限會員使用。'
       },
       'zh-CN': {
         home: '首页', chat: '聊天', design: '设计', cart: '购物车', contactUs: '联系我们', logOut: '退出', languages: '语言',
         traditionalChinese: '繁体中文', simplifiedChinese: '简体中文', english: 'English',
         welcome: '欢迎使用 Cx！', userId: '用户ID', password: '密码', enter: '进入', signIn: '登录', forgot: '忘记密码',
+        asGuest: '以访客身份',
         chatTitle: '聊天', typePlaceholder: '输入您想要的内容...', processing: '处理中，请稍候片刻。',
         homeTitle: '首页', product: '产品', origin: '原创', collaboration: '联名', accessory: '配件',
-        designTitle: '设计', brandLabel: '品牌', modelLabel: '型号', selectBrand: '选择品牌',
+        discountMessage: '限时优惠：所有手机壳八折！',
+        designTitle: '设计', brandLabel: '品牌', modelLabel: '型号', selectBrand: '选择品牌', selectModel: '选择型号',
         fullWrap: '全包设计', printable: '仅打印区域', clickUpload: '点击上传图片',
         previewTitle: '预览', addToCart: '加入购物车', cancel: '取消', back: '返回',
         cartTitle: '购物车', emptyCart: '您的购物车是空的', total: '总计', previewCost: '预览总费用',
         paymentTitle: '付款', totalHKD: '总额 HKD', caseCost: '手机壳', subtotal: '小计', tax: '税费', payNow: '立即付款',
         howToPay: '您想如何付款？', alipay: '支付宝', wechatPay: '微信支付', visa: 'Visa', master: 'Master',
-        creditCardTitle: '信用卡', cardholderName: '持卡人姓名', cardNumber: '卡号', expiryDate: '有效期', cvv: 'CVV',
-        submitPayment: '提交付款',
+        creditCardTitle: '信用卡', cardholderName: '持卡人姓名', cardNumber: '卡号', expiry: '到期日', cvv: 'CVV',
+        confirmPayment: '确认付款', paymentSuccess: '付款成功！(模拟)',
         contactUsTitle: '联系我们', contactHeading: '联系我们', contactSubtitle: '联系信息',
         originComing: '原创页面 - 敬请期待', collabComing: '联名页面 - 敬请期待', accComing: '配件页面 - 敬请期待',
-        delete: '删除', remove: '移除', step: '步骤', cartStep: '购物车', paymentStep: '付款', confirmStep: '确认'
+        delete: '删除', remove: '移除', accessDenied: '请登录以使用此功能。', guestRestricted: '此功能仅限会员使用。'
       }
     };
     const LanguageProvider = ({ children }) => {
@@ -101,15 +109,18 @@
     };
     const useTranslation = () => useContext(LanguageContext);
 
-    // ---------- Brand/Model mapping ----------
-    const BRAND_MODELS = {
-      apple: ['iPhone 17 Pro Max','iPhone 17 Pro','iPhone 16','iPhone 15 Pro'],
-      samsung: ['Galaxy S25 Ultra','Galaxy S24','Galaxy Z Fold6','Galaxy Z Flip6'],
-      sony: ['Xperia 1 VI','Xperia 5 V','Xperia 10 VI'],
-      Huawei: ['Pura 70 Ultra','Mate 60 Pro','P60 Pro'],
-      Vivo: ['X100 Pro','X Fold3','V30 Pro'],
-      Honor: ['Magic 6 Pro','Magic V2','Magic 6 Lite']
+    // ---------- Auth Context ----------
+    const AuthContext = createContext();
+    const AuthProvider = ({ children }) => {
+      const [authStatus, setAuthStatus] = useState('none');
+      const login = () => setAuthStatus('authenticated');
+      const guestLogin = () => setAuthStatus('guest');
+      const logout = () => setAuthStatus('none');
+      const isAuthenticated = authStatus === 'authenticated';
+      const isGuest = authStatus === 'guest';
+      return <AuthContext.Provider value={{ authStatus, isAuthenticated, isGuest, login, guestLogin, logout }}>{children}</AuthContext.Provider>;
     };
+    const useAuth = () => useContext(AuthContext);
 
     // ---------- Cart Context ----------
     const CartContext = createContext();
@@ -122,10 +133,32 @@
       });
       const updateQuantity = (id, delta) => setCartItems(prev => prev.map(i => i.id === id ? {...i, quantity: Math.max(1, i.quantity + delta)} : i));
       const removeItem = (id) => setCartItems(prev => prev.filter(i => i.id !== id));
+      const clearCart = () => setCartItems([]);
       const totalCost = cartItems.reduce((sum, i) => sum + i.quantity * i.unitPrice, 0);
-      return <CartContext.Provider value={{ cartItems, addToCart, updateQuantity, removeItem, totalCost }}>{children}</CartContext.Provider>;
+      return <CartContext.Provider value={{ cartItems, addToCart, updateQuantity, removeItem, clearCart, totalCost }}>{children}</CartContext.Provider>;
     };
     const useCart = () => useContext(CartContext);
+
+    // ---------- Brand/Model Mapping ----------
+    const BRAND_MODELS = {
+      Apple: ['iPhone 17 Pro Max','iPhone 17 Pro','iPhone 16','iPhone 15 Pro'],
+      Samsung: ['Galaxy S25 Ultra','Galaxy S24','Galaxy Z Fold6','Galaxy Z Flip6'],
+      Sony: ['Xperia 1 VI','Xperia 5 V','Xperia 10 VI'],
+      Google: ['Pixel 9 Pro','Pixel 9','Pixel 8 Pro'],
+      Huawei: ['Pura 70 Ultra','Mate 60 Pro','P60 Pro'],
+      Xiaomi: ['14 Ultra','14 Pro','13T Pro'],
+      Vivo: ['X100 Pro','X Fold3','V30 Pro'],
+      Honor: ['Magic 6 Pro','Magic V2','Magic 6 Lite']
+    };
+
+    // ---------- Protected Wrapper ----------
+    const ProtectedPage = ({ children }) => {
+      const { isAuthenticated, isGuest } = useAuth();
+      const { t } = useTranslation();
+      if (isAuthenticated) return children;
+      if (isGuest) return <div className="flex-1 flex flex-col items-center justify-center p-6 text-center"><p className="text-neutral-300 mb-4">{t('guestRestricted')}</p><p className="text-sm text-neutral-500">{t('accessDenied')}</p></div>;
+      return null;
+    };
 
     // ---------- Main App ----------
     const App = () => {
@@ -135,11 +168,13 @@
       const [chatContent, setChatContent] = useState(null);
       const [uploadedImage, setUploadedImage] = useState(null);
       const [userId, setUserId] = useState(''); const [password, setPassword] = useState('');
-      const [designBrand, setDesignBrand] = useState('apple');
-      const [designModel, setDesignModel] = useState(BRAND_MODELS.apple[0]);
+      const [designBrand, setDesignBrand] = useState('');
+      const [designModel, setDesignModel] = useState('');
+      const [designContext, setDesignContext] = useState(null);
       const [previewContext, setPreviewContext] = useState(null);
       const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
       const { t } = useTranslation();
+      const { isAuthenticated, isGuest, login, guestLogin, logout } = useAuth();
       
       const previousViewRef = useRef('chat');
       useEffect(() => { if (view !== 'loading') previousViewRef.current = view; }, [view]);
@@ -147,7 +182,7 @@
       const getHeaderTitle = () => {
         if (view === 'home') return t('homeTitle');
         if (view === 'chat') return t('chatTitle');
-        if (view === 'design' || view === 'preview') return t('designTitle');
+        if (view === 'design' || view === 'designSelection' || view === 'preview') return t('designTitle');
         if (view === 'cart') return t('cartTitle');
         if (view === 'contact') return t('contactUsTitle');
         if (view === 'payment') return t('paymentTitle');
@@ -159,7 +194,9 @@
         return 'Cx';
       };
 
-      const handleLogin = (e) => { e?.preventDefault(); setView('chat'); };
+      const handleLogin = (e) => { e?.preventDefault(); login(); setView('home'); };
+      const handleGuest = () => { guestLogin(); setView('home'); };
+      
       const handleChatSubmit = async (e) => {
         e?.preventDefault(); const prompt = searchInput.trim() || "A peaceful mountain landscape at sunset";
         setLoading(true); setView('loading');
@@ -169,48 +206,56 @@
       };
       
       const navigateTo = (dest) => {
-        if (dest === 'logout') { setView('login'); setUserId(''); setPassword(''); return; }
+        if (dest === 'logout') { logout(); setView('login'); setUserId(''); setPassword(''); return; }
+        if (isGuest && dest !== 'home') { alert(t('accessDenied')); return; }
         const map = { home:'home', chat:'chat', design:'design', cart:'cart', contact:'contact', 
                       origin:'origin', collaboration:'collaboration', accessory:'accessory', payment:'payment', creditcard:'creditcard' };
-        if (map[dest]) { setView(map[dest]); if (dest === 'design') setPreviewContext(null); }
+        if (map[dest]) { setView(map[dest]); if (dest === 'design') { setDesignBrand(''); setDesignModel(''); setDesignContext(null); } }
       };
-      
+
+      const handleDesignSubmit = (brand, model) => {
+        if (!brand || !model) { alert('Please select brand and model'); return; }
+        setDesignContext({ brand, model });
+        setView('designSelection');
+      };
+
       const goToPreview = (file, url, brand, model, designType) => { 
         setPreviewContext({ imageFile: file, imageUrl: url, brand, model, designType }); 
         setView('preview'); 
       };
 
-      const handlePaymentMethodSelect = (method) => {
-        setSelectedPaymentMethod(method);
-        if (method === 'visa' || method === 'master') navigateTo('creditcard');
-        else alert(`${method} selected — demo flow.`);
-      };
+      useEffect(() => {
+        const restricted = ['chat', 'design', 'designSelection', 'preview', 'cart', 'payment', 'creditcard', 'contact', 'origin', 'collaboration', 'accessory'];
+        if (restricted.includes(view) && !isAuthenticated && !isGuest) setView('login');
+        if (isGuest && restricted.includes(view)) setView('home');
+      }, [view, isAuthenticated, isGuest]);
 
       return (
         <CartProvider>
           <div className="phone-frame w-[375px] h-[812px] max-w-full bg-black rounded-[40px] overflow-hidden flex flex-col text-white border border-neutral-800/60">
             {view !== 'login' && <NavBar title={getHeaderTitle()} onNavigate={navigateTo} />}
             <div className="flex-1 flex flex-col overflow-hidden">
-              {view === 'login' && <LoginScreen userId={userId} setUserId={setUserId} password={password} setPassword={setPassword} onEnter={handleLogin} />}
-              {view === 'chat' && <ChatInterface searchInput={searchInput} setSearchInput={setSearchInput} onSubmit={handleChatSubmit} chatContent={chatContent} setChatContent={setChatContent} uploadedImage={uploadedImage} setUploadedImage={setUploadedImage} />}
+              {view === 'login' && <LoginScreen userId={userId} setUserId={setUserId} password={password} setPassword={setPassword} onEnter={handleLogin} onGuest={handleGuest} />}
+              {view === 'chat' && <ProtectedPage><ChatInterface searchInput={searchInput} setSearchInput={setSearchInput} onSubmit={handleChatSubmit} chatContent={chatContent} setChatContent={setChatContent} uploadedImage={uploadedImage} setUploadedImage={setUploadedImage} /></ProtectedPage>}
               {view === 'loading' && <LoadingScreen />}
               {view === 'home' && <HomePage onNavigate={navigateTo} />}
-              {view === 'origin' && <PlaceholderScreen title={t('origin')} message={t('originComing')} />}
-              {view === 'collaboration' && <PlaceholderScreen title={t('collaboration')} message={t('collabComing')} />}
-              {view === 'accessory' && <PlaceholderScreen title={t('accessory')} message={t('accComing')} />}
-              {view === 'design' && <DesignPage brand={designBrand} setBrand={setDesignBrand} model={designModel} setModel={setDesignModel} onNavigateToPreview={goToPreview} />}
-              {view === 'preview' && previewContext && <PreviewPage context={previewContext} onBack={() => setView('design')} />}
-              {view === 'cart' && <CartPage onCheckout={() => setView('payment')} />}
-              {view === 'payment' && <PaymentPage onSelectPayment={handlePaymentMethodSelect} />}
-              {view === 'creditcard' && <CreditCardPage onBack={() => setView('payment')} />}
-              {view === 'contact' && <ContactScreen />}
+              {view === 'origin' && <ProtectedPage><PlaceholderScreen title={t('origin')} message={t('originComing')} /></ProtectedPage>}
+              {view === 'collaboration' && <ProtectedPage><PlaceholderScreen title={t('collaboration')} message={t('collabComing')} /></ProtectedPage>}
+              {view === 'accessory' && <ProtectedPage><PlaceholderScreen title={t('accessory')} message={t('accComing')} /></ProtectedPage>}
+              {view === 'design' && <ProtectedPage><DesignBrandModelPage brand={designBrand} setBrand={setDesignBrand} model={designModel} setModel={setDesignModel} onSubmit={handleDesignSubmit} /></ProtectedPage>}
+              {view === 'designSelection' && designContext && <ProtectedPage><DesignSelectionPage context={designContext} onBack={() => setView('design')} onNavigateToPreview={goToPreview} /></ProtectedPage>}
+              {view === 'preview' && previewContext && <ProtectedPage><PreviewPage context={previewContext} onBack={() => setView('designSelection')} onAddAndGoToCart={() => setView('cart')} /></ProtectedPage>}
+              {view === 'cart' && <ProtectedPage><CartPage onCheckout={() => setView('payment')} /></ProtectedPage>}
+              {view === 'payment' && <ProtectedPage><PaymentPage onNext={(method) => { setSelectedPaymentMethod(method); setView('creditcard'); }} onBack={() => setView('cart')} /></ProtectedPage>}
+              {view === 'creditcard' && <ProtectedPage><CreditCardPage method={selectedPaymentMethod} onBack={() => setView('payment')} onSuccess={() => { alert(t('paymentSuccess')); setView('home'); }} /></ProtectedPage>}
+              {view === 'contact' && <ProtectedPage><ContactScreen /></ProtectedPage>}
             </div>
           </div>
         </CartProvider>
       );
     };
 
-    // ---------- NavBar (menu items capitalized, language switch affects all) ----------
+    // ---------- NavBar ----------
     const NavBar = ({ title, onNavigate }) => {
       const [open, setOpen] = useState(false); const [langOpen, setLangOpen] = useState(false);
       const menuRef = useRef(); const btnRef = useRef(); const { locale, setLocale, t } = useTranslation();
@@ -233,32 +278,16 @@
       
       return (
         <div className="relative w-full bg-black pt-5 pb-2 px-4 border-b border-neutral-800/40">
-          <div className="flex items-center justify-between">
-            <div className="w-8"></div>
-            <span className="text-white text-lg font-semibold">{title}</span>
-            <button ref={btnRef} onClick={() => setOpen(!open)} className="w-8 h-8 flex items-center justify-center text-2xl hover:bg-neutral-800 rounded-full">亖</button>
-          </div>
+          <div className="flex items-center justify-between"><div className="w-8"></div><span className="text-white text-lg font-semibold">{title}</span><button ref={btnRef} onClick={() => setOpen(!open)} className="w-8 h-8 flex items-center justify-center text-2xl hover:bg-neutral-800 rounded-full">亖</button></div>
           {open && (
             <div ref={menuRef} className="absolute right-4 top-14 w-48 bg-neutral-900 border border-neutral-700 rounded-xl shadow-2xl z-50 py-1">
-              {menuItems.map(item => (
-                <button key={item.key} onClick={() => handleSelect(item.action)} className="w-full text-left px-4 py-2.5 text-sm hover:bg-neutral-800">
-                  {t(item.key)}
-                </button>
-              ))}
-              <button onClick={() => setLangOpen(!langOpen)} className="w-full text-left px-4 py-2.5 text-sm hover:bg-neutral-800 flex justify-between items-center">
-                {t('languages')} <span className="text-xs text-neutral-400">{langOpen?'▲':'▼'}</span>
-              </button>
+              {menuItems.map(item => (<button key={item.key} onClick={() => handleSelect(item.action)} className="w-full text-left px-4 py-2.5 text-sm hover:bg-neutral-800">{t(item.key)}</button>))}
+              <button onClick={() => setLangOpen(!langOpen)} className="w-full text-left px-4 py-2.5 text-sm hover:bg-neutral-800 flex justify-between items-center">{t('languages')} <span className="text-xs text-neutral-400">{langOpen?'▲':'▼'}</span></button>
               {langOpen && (
                 <div className="border-t border-neutral-700 mt-1 pt-1">
                   {['traditionalChinese','simplifiedChinese','english'].map(langKey => {
                     const code = langKey === 'traditionalChinese' ? 'zh-TW' : langKey === 'simplifiedChinese' ? 'zh-CN' : 'en';
-                    const isActive = locale === code;
-                    return (
-                      <button key={langKey} disabled={isActive} onClick={() => changeLanguage(code)} 
-                        className={`w-full text-left px-4 py-2 text-sm ${isActive ? 'text-neutral-500 bg-neutral-800/50 cursor-not-allowed' : 'hover:bg-neutral-800 text-white'}`}>
-                        {t(langKey)} {isActive && '✓'}
-                      </button>
-                    );
+                    return <button key={langKey} disabled={locale === code} onClick={() => changeLanguage(code)} className={`w-full text-left px-4 py-2 text-sm ${locale === code ? 'text-neutral-500 bg-neutral-800/50 cursor-not-allowed' : 'hover:bg-neutral-800 text-white'}`}>{t(langKey)} {locale === code && '✓'}</button>;
                   })}
                 </div>
               )}
@@ -269,9 +298,9 @@
     };
 
     // ---------- Login ----------
-    const LoginScreen = ({ userId, setUserId, password, setPassword, onEnter }) => {
+    const LoginScreen = ({ userId, setUserId, password, setPassword, onEnter, onGuest }) => {
       const { t } = useTranslation();
-      return (<div className="flex flex-col h-full px-6 justify-center"><h1 className="text-3xl font-bold text-center mb-10">{t('welcome')}</h1><div className="space-y-5"><input type="text" placeholder={t('userId')} value={userId} onChange={e => setUserId(e.target.value)} className="w-full bg-transparent border border-neutral-600 rounded-xl px-4 py-3" /><input type="password" placeholder={t('password')} value={password} onChange={e => setPassword(e.target.value)} className="w-full bg-transparent border border-neutral-600 rounded-xl px-4 py-3" /></div><button onClick={onEnter} className="mt-8 w-full bg-white text-black font-semibold py-3 rounded-xl">{t('enter')}</button><div className="flex justify-between mt-4 text-sm text-neutral-300"><button className="hover:text-white">{t('signIn')}</button><button className="hover:text-white">{t('forgot')}</button></div></div>);
+      return (<div className="flex flex-col h-full px-6 justify-center"><h1 className="text-3xl font-bold text-center mb-10">{t('welcome')}</h1><div className="space-y-5"><input type="text" placeholder={t('userId')} value={userId} onChange={e => setUserId(e.target.value)} className="w-full bg-transparent border border-neutral-600 rounded-xl px-4 py-3" /><input type="password" placeholder={t('password')} value={password} onChange={e => setPassword(e.target.value)} className="w-full bg-transparent border border-neutral-600 rounded-xl px-4 py-3" /></div><button onClick={onEnter} className="mt-8 w-full bg-white text-black font-semibold py-3 rounded-xl">{t('enter')}</button><div className="flex justify-between mt-4 text-sm text-neutral-300"><button className="hover:text-white">{t('signIn')}</button><button className="hover:text-white">{t('forgot')}</button></div><button onClick={onGuest} className="mt-4 text-sm text-neutral-400 hover:text-white text-center w-full">{t('asGuest')}</button></div>);
     };
 
     // ---------- Chat ----------
@@ -295,40 +324,143 @@
     const LoadingScreen = () => { const { t } = useTranslation(); return (<div className="flex-1 flex flex-col items-center justify-center"><div className="w-12 h-12 border-4 border-neutral-700 border-t-white rounded-full animate-spin mb-5"></div><p className="text-white font-medium">{t('processing')}</p><p className="text-neutral-400 text-xs mt-2">Cx AI</p></div>); };
     const PlaceholderScreen = ({ title, message }) => (<div className="flex-1 flex flex-col items-center justify-center p-6"><h2 className="text-2xl font-semibold mb-3">{title}</h2><p className="text-neutral-300">{message}</p></div>);
 
-    // ---------- Home Page ----------
+    // ---------- Home (with discount) ----------
     const HomePage = ({ onNavigate }) => {
       const { t } = useTranslation();
-      const categories = [
-        { key: 'origin', label: t('origin'), icon: '🌱' },
-        { key: 'collaboration', label: t('collaboration'), icon: '🤝' },
-        { key: 'accessory', label: t('accessory'), icon: '🔌' }
-      ];
-      return (<div className="flex-1 p-5 flex flex-col"><h2 className="text-xl font-bold mb-5">{t('product')}</h2><div className="flex justify-around gap-3">{categories.map(cat => (<button key={cat.key} onClick={() => onNavigate(cat.key)} className="flex-1 bg-neutral-900 border border-neutral-700 rounded-2xl py-5 px-2 flex flex-col items-center hover:bg-neutral-800 transition"><span className="text-2xl mb-2">{cat.icon}</span><span className="text-sm font-medium">{cat.label}</span></button>))}</div><div className="flex-1 flex items-center justify-center text-neutral-500 text-sm mt-4">Featured products coming soon</div></div>);
+      const categories = [{ key: 'origin', label: t('origin'), icon: '🌱' },{ key: 'collaboration', label: t('collaboration'), icon: '🤝' },{ key: 'accessory', label: t('accessory'), icon: '🔌' }];
+      return (
+        <div className="flex-1 p-5 flex flex-col">
+          <h2 className="text-xl font-bold mb-5">{t('product')}</h2>
+          <div className="flex justify-around gap-3">
+            {categories.map(cat => (<button key={cat.key} onClick={() => onNavigate(cat.key)} className="flex-1 bg-neutral-900 border border-neutral-700 rounded-2xl py-5 px-2 flex flex-col items-center hover:bg-neutral-800 transition"><span className="text-2xl mb-2">{cat.icon}</span><span className="text-sm font-medium">{cat.label}</span></button>))}
+          </div>
+          <div className="mt-6 p-4 bg-green-900/30 border border-green-500/40 rounded-xl text-center">
+            <p className="text-green-300 font-bold text-base">{t('discountMessage')}</p>
+          </div>
+          <div className="flex-1 flex items-center justify-center text-neutral-500 text-sm mt-4">Featured products coming soon</div>
+        </div>
+      );
     };
 
-    // ---------- Design Page ----------
-    const DesignPage = ({ brand, setBrand, model, setModel, onNavigateToPreview }) => {
-      const [loadingDrawings, setLoadingDrawings] = useState(false); const [drawings, setDrawings] = useState(null);
-      const fullRef = useRef(); const printRef = useRef(); const { t } = useTranslation();
-      const brandOptions = Object.keys(BRAND_MODELS); const modelOptions = BRAND_MODELS[brand] || [];
-      useEffect(() => { if (modelOptions.length) setModel(modelOptions[0]); }, [brand]);
-      const handleSubmit = () => { setLoadingDrawings(true); setTimeout(() => { setDrawings({ full:true, printable:true }); setLoadingDrawings(false); }, 300); };
-      const handleDrawingClick = (type) => { if (type==='full') fullRef.current?.click(); else printRef.current?.click(); };
-      const handleFile = (e, designType) => { const f = e.target.files[0]; if (!f?.type.startsWith('image/')) { e.target.value=null; return; } const url = URL.createObjectURL(f); onNavigateToPreview(f, url, brand, model, designType); e.target.value=null; };
-      return (<div className="flex-1 flex flex-col p-4 overflow-hidden">
-        <input type="file" accept="image/*" ref={fullRef} onChange={e=>handleFile(e,'full-wrap')} className="hidden" />
-        <input type="file" accept="image/*" ref={printRef} onChange={e=>handleFile(e,'printable')} className="hidden" />
-        <div className="flex items-center gap-2 mb-4"><div className="flex-1"><label className="text-xs text-neutral-400 block mb-1">{t('brandLabel')}</label><select value={brand} onChange={e=>setBrand(e.target.value)} className="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-sm">{brandOptions.map(b=><option key={b}>{b}</option>)}</select></div><div className="flex-1"><label className="text-xs text-neutral-400 block mb-1">{t('modelLabel')}</label><select value={model} onChange={e=>setModel(e.target.value)} className="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-sm">{modelOptions.map(m=><option key={m}>{m}</option>)}</select></div><button onClick={handleSubmit} disabled={loadingDrawings} className="w-10 h-10 flex items-center justify-center text-2xl bg-white/10 rounded-full hover:bg-white/20 mt-5">&gt;</button></div>
-        <div className="flex-1 overflow-y-auto scrollable-design space-y-4">{loadingDrawings?<div className="flex justify-center py-8"><div className="w-8 h-8 border-2 border-neutral-600 border-t-white rounded-full animate-spin"></div></div>: drawings ? (<><div onClick={()=>handleDrawingClick('full')} className="cursor-pointer bg-neutral-900/70 border border-neutral-800 rounded-2xl p-3 hover:border-neutral-600"><p className="text-sm font-medium mb-2">📱 {t('fullWrap')}</p><div className="aspect-square bg-gradient-to-br from-blue-900/40 to-purple-900/40 rounded-xl flex items-center justify-center border border-neutral-700"><span className="text-white/70 text-sm">Full-wrap</span></div><p className="text-[10px] text-neutral-500 mt-2">{t('clickUpload')}</p></div><div onClick={()=>handleDrawingClick('printable')} className="cursor-pointer bg-neutral-900/70 border border-neutral-800 rounded-2xl p-3 hover:border-neutral-600"><p className="text-sm font-medium mb-2">✂️ {t('printable')}</p><div className="aspect-square bg-gradient-to-br from-emerald-900/40 to-teal-900/40 rounded-xl flex items-center justify-center border border-neutral-700"><span className="text-white/70 text-sm">Printable</span></div><p className="text-[10px] text-neutral-500 mt-2">{t('clickUpload')}</p></div></>) : <div className="h-40 flex items-center justify-center text-neutral-500">Select →</div>}</div>
-      </div>);
+    // ---------- Design Page 1: Brand & Model ----------
+    const DesignBrandModelPage = ({ brand, setBrand, model, setModel, onSubmit }) => {
+      const { t } = useTranslation();
+      const brandOptions = Object.keys(BRAND_MODELS);
+      const modelOptions = BRAND_MODELS[brand] || [];
+      
+      useEffect(() => {
+        if (brand && modelOptions.length > 0) {
+          if (!model || !modelOptions.includes(model)) setModel(modelOptions[0]);
+        } else {
+          setModel('');
+        }
+      }, [brand]);
+
+      return (
+        <div className="flex-1 flex flex-col p-5">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="flex-1">
+              <select value={brand} onChange={e => setBrand(e.target.value)} className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-white text-sm">
+                <option value="" disabled>{t('selectBrand')}</option>
+                {brandOptions.map(b => <option key={b} value={b}>{b}</option>)}
+              </select>
+            </div>
+            <div className="flex-1">
+              <select value={model} onChange={e => setModel(e.target.value)} className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-white text-sm" disabled={!brand}>
+                <option value="" disabled>{t('selectModel')}</option>
+                {modelOptions.map(m => <option key={m} value={m}>{m}</option>)}
+              </select>
+            </div>
+            <button onClick={() => onSubmit(brand, model)} className="w-10 h-10 flex items-center justify-center text-2xl bg-white/10 rounded-full hover:bg-white/20">&gt;</button>
+          </div>
+          
+          <div className="flex-1 flex flex-col items-center justify-center">
+            <div className="w-40 h-80 border-4 border-neutral-600 rounded-3xl bg-neutral-900/50 shadow-inner" />
+            <p className="mt-4 text-neutral-400 text-sm">{brand || 'Brand'} {model || ''}</p>
+          </div>
+        </div>
+      );
     };
 
-    // ---------- Preview ----------
-    const PreviewPage = ({ context, onBack }) => {
-      const { imageUrl, brand, model, designType } = context; const { addToCart } = useCart(); const { t } = useTranslation();
+    // ---------- Design Selection ----------
+    const DesignSelectionPage = ({ context, onBack, onNavigateToPreview }) => {
+      const { brand, model } = context;
+      const fullRef = useRef(); const printRef = useRef();
+      const { t } = useTranslation();
+      
+      const handleDrawingClick = (type) => {
+        if (type === 'full') fullRef.current?.click();
+        else printRef.current?.click();
+      };
+      
+      const handleFile = (e, designType) => {
+        const f = e.target.files[0];
+        if (!f?.type.startsWith('image/')) { e.target.value = null; return; }
+        const url = URL.createObjectURL(f);
+        onNavigateToPreview(f, url, brand, model, designType);
+        e.target.value = null;
+      };
+
+      return (
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <input type="file" accept="image/*" ref={fullRef} onChange={e => handleFile(e, 'full-wrap')} className="hidden" />
+          <input type="file" accept="image/*" ref={printRef} onChange={e => handleFile(e, 'printable')} className="hidden" />
+          
+          <div className="px-4 py-3 border-b border-neutral-800 flex items-center gap-2">
+            <button onClick={onBack} className="text-2xl leading-6 px-1">&larr;</button>
+            <span className="text-sm font-medium truncate">{brand} {model}</span>
+          </div>
+          
+          <div className="flex-1 overflow-y-auto p-5 space-y-5">
+            <div onClick={() => handleDrawingClick('full')} className="cursor-pointer bg-neutral-900/70 border border-neutral-800 rounded-2xl p-4 hover:border-neutral-600">
+              <p className="text-lg font-medium mb-3">📱 {t('fullWrap')}</p>
+              <div className="aspect-square bg-gradient-to-br from-blue-900/40 to-purple-900/40 rounded-xl flex items-center justify-center border border-neutral-700">
+                <span className="text-white/70 text-sm">Full-wrap template</span>
+              </div>
+              <p className="text-xs text-neutral-500 mt-3">{t('clickUpload')}</p>
+            </div>
+            <div onClick={() => handleDrawingClick('printable')} className="cursor-pointer bg-neutral-900/70 border border-neutral-800 rounded-2xl p-4 hover:border-neutral-600">
+              <p className="text-lg font-medium mb-3">✂️ {t('printable')}</p>
+              <div className="aspect-square bg-gradient-to-br from-emerald-900/40 to-teal-900/40 rounded-xl flex items-center justify-center border border-neutral-700">
+                <span className="text-white/70 text-sm">Printable area template</span>
+              </div>
+              <p className="text-xs text-neutral-500 mt-3">{t('clickUpload')}</p>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // ---------- Preview (add to cart then navigate to cart) ----------
+    const PreviewPage = ({ context, onBack, onAddAndGoToCart }) => {
+      const { imageUrl, brand, model, designType } = context; 
+      const { addToCart } = useCart(); 
+      const { t } = useTranslation();
       const isFull = designType === 'full-wrap';
-      const handleAdd = () => { addToCart({ imageUrl, brand, model, designType }); alert(`✅ ${model} (${designType})`); onBack(); };
-      return (<div className="flex-1 flex flex-col overflow-hidden"><div className="px-4 py-3 border-b border-neutral-800 flex items-center gap-2"><button onClick={onBack} className="text-2xl leading-6 px-1">&larr;</button><span className="text-sm font-medium truncate">{t('previewTitle')}: {model} · {isFull?t('fullWrap'):t('printable')}</span></div><div className="flex-1 p-4 flex flex-col items-center justify-center"><div className={`relative border-2 border-dashed rounded-2xl overflow-hidden ${isFull?'border-blue-500/60':'border-emerald-500/60'} w-full max-w-[280px]`}><img src={imageUrl} className={`w-full ${isFull?'aspect-[9/16] object-cover':'aspect-square object-contain bg-neutral-950'}`} />{!isFull && <div className="absolute inset-0 border-4 border-emerald-500/40 pointer-events-none rounded-2xl" style={{margin:'8px'}}></div>}</div></div><div className="p-4 border-t border-neutral-800 flex gap-3"><button onClick={onBack} className="flex-1 py-2 border border-neutral-700 rounded-full text-sm">{t('cancel')}</button><button onClick={handleAdd} className="flex-1 py-2 bg-white text-black rounded-full text-sm font-medium">{t('addToCart')}</button></div></div>);
+      
+      const handleAddAndGo = () => { 
+        addToCart({ imageUrl, brand, model, designType }); 
+        onAddAndGoToCart(); 
+      };
+      
+      return (
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="px-4 py-3 border-b border-neutral-800 flex items-center gap-2">
+            <button onClick={onBack} className="text-2xl leading-6 px-1">&larr;</button>
+            <span className="text-sm font-medium truncate">{t('previewTitle')}: {model} · {isFull?t('fullWrap'):t('printable')}</span>
+          </div>
+          <div className="flex-1 p-4 flex flex-col items-center justify-center">
+            <div className={`relative border-2 border-dashed rounded-2xl overflow-hidden ${isFull?'border-blue-500/60':'border-emerald-500/60'} w-full max-w-[280px]`}>
+              <img src={imageUrl} className={`w-full ${isFull?'aspect-[9/16] object-cover':'aspect-square object-contain bg-neutral-950'}`} />
+              {!isFull && <div className="absolute inset-0 border-4 border-emerald-500/40 pointer-events-none rounded-2xl" style={{margin:'8px'}}></div>}
+            </div>
+          </div>
+          <div className="p-4 border-t border-neutral-800 flex gap-3">
+            <button onClick={onBack} className="flex-1 py-2 border border-neutral-700 rounded-full text-sm">{t('cancel')}</button>
+            <button onClick={handleAddAndGo} className="flex-1 py-2 bg-white text-black rounded-full text-sm font-medium">{t('addToCart')}</button>
+          </div>
+        </div>
+      );
     };
 
     // ---------- Cart ----------
@@ -342,111 +474,44 @@
       return (<div className="flex-1 flex flex-col overflow-hidden"><div className="flex-1 overflow-y-auto cart-scroll p-3 space-y-3">{cartItems.map(item => (<div key={item.id} className="relative overflow-hidden" onTouchStart={e=>handleTouchStart(item.id,e)} onTouchMove={e=>handleTouchMove(item.id,e)} onTouchEnd={()=>handleTouchEnd(item.id)}><div className="absolute right-0 top-0 bottom-0 w-20 bg-red-600 flex items-center justify-center text-white font-medium text-sm rounded-r-xl">{t('delete')}</div><div className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-3 flex gap-3 relative transition-transform" style={{transform: `translateX(${swipeOffset[item.id]||0}px)`}}><img src={item.imageUrl} className="w-16 h-16 object-cover rounded-lg" /><div className="flex-1"><p className="font-medium text-sm">{item.model}</p><p className="text-xs text-neutral-400">{item.designType} · ${item.unitPrice}</p><div className="flex items-center gap-3 mt-2"><button onClick={()=>updateQuantity(item.id,-1)} className="w-7 h-7 rounded-full border border-neutral-600 text-lg leading-4">−</button><span className="w-6 text-center">{item.quantity}</span><button onClick={()=>updateQuantity(item.id,1)} className="w-7 h-7 rounded-full border border-neutral-600 text-lg leading-4">+</button></div></div><button onClick={()=>removeItem(item.id)} className="text-neutral-400 hover:text-white text-lg px-1">🗑️</button></div></div>))}</div><div className="p-4 border-t border-neutral-800"><div className="flex justify-between text-lg font-semibold mb-3"><span>{t('total')}</span><span>${totalCost}</span></div><button onClick={onCheckout} className="w-full bg-red-600 text-white py-3 rounded-xl font-medium">{t('previewCost')}</button></div></div>);
     };
 
-    // ---------- Payment Page (with progress bar, payment options) ----------
-    const PaymentPage = ({ onSelectPayment }) => {
+    // ---------- Payment ----------
+    const PaymentPage = ({ onNext, onBack }) => {
       const { cartItems, totalCost } = useCart(); const { t } = useTranslation();
       const [expanded, setExpanded] = useState(false);
       const [selectedMethod, setSelectedMethod] = useState(null);
       const subtotal = totalCost; const tax = 2; const final = subtotal + tax;
-      
-      const paymentMethods = [
+      const methods = [
         { key: 'alipay', label: t('alipay'), icon: '💳' },
         { key: 'wechat', label: t('wechatPay'), icon: '📱' },
-        { key: 'visa', label: t('visa'), icon: '💳' },
-        { key: 'master', label: t('master'), icon: '💳' }
+        { key: 'visa', label: t('visa'), icon: '🏦' },
+        { key: 'master', label: t('master'), icon: '🌐' }
       ];
-
-      const handleMethodClick = (method) => {
-        setSelectedMethod(method);
-        onSelectPayment(method);
-      };
-
-      return (
-        <div className="flex-1 bg-white text-black flex flex-col overflow-hidden">
-          <div className="flex-1 overflow-y-auto p-5">
-            {/* Total dropdown */}
-            <div className="border border-gray-300 rounded-xl overflow-hidden mb-4">
-              <button onClick={()=>setExpanded(!expanded)} className="w-full flex items-center justify-between px-4 py-4 bg-gray-50">
-                <span className="font-medium">{t('totalHKD')}</span>
-                <div className="flex items-center gap-3"><span className="text-lg font-semibold">${final}</span><span className="text-gray-500 text-xl">{expanded?'▲':'▼'}</span></div>
-              </button>
-              {expanded && (
-                <div className="p-4 space-y-2 border-t border-gray-200 bg-white">
-                  <div className="flex justify-between"><span>{t('caseCost')} ({cartItems.reduce((s,i)=>s+i.quantity,0)} x $10)</span><span>${subtotal}</span></div>
-                  <div className="flex justify-between"><span>{t('tax')}</span><span>${tax}</span></div>
-                  <div className="flex justify-between font-bold pt-2 border-t"><span>{t('total')}</span><span>${final}</span></div>
-                </div>
-              )}
-            </div>
-
-            {/* Progress bar (Cart → Payment → Confirm) */}
-            <div className="flex items-center justify-between mb-6 px-2">
-              <div className="flex flex-col items-center"><div className="w-3 h-3 rounded-full bg-gray-400"></div><span className="text-xs mt-1 text-gray-500">{t('cartStep')}</span></div>
-              <div className="flex-1 h-0.5 bg-gray-300 mx-1"></div>
-              <div className="flex flex-col items-center"><div className="w-3 h-3 rounded-full bg-black"></div><span className="text-xs mt-1 font-medium">{t('paymentStep')}</span></div>
-              <div className="flex-1 h-0.5 bg-gray-300 mx-1"></div>
-              <div className="flex flex-col items-center"><div className="w-3 h-3 rounded-full bg-gray-400"></div><span className="text-xs mt-1 text-gray-500">{t('confirmStep')}</span></div>
-            </div>
-
-            {/* Payment method question */}
-            <h3 className="text-lg font-semibold mb-3">{t('howToPay')}</h3>
-            <div className="grid grid-cols-2 gap-3">
-              {paymentMethods.map(m => (
-                <button key={m.key} onClick={() => handleMethodClick(m.key)} className={`border rounded-xl p-4 flex flex-col items-center gap-1 transition ${selectedMethod === m.key ? 'border-black bg-gray-100' : 'border-gray-300 hover:bg-gray-50'}`}>
-                  <span className="text-2xl">{m.icon}</span>
-                  <span className="text-sm font-medium">{m.label}</span>
-                </button>
-              ))}
-            </div>
-            {selectedMethod && (selectedMethod === 'alipay' || selectedMethod === 'wechat') && (
-              <p className="text-xs text-gray-500 mt-3 text-center">Demo: {selectedMethod} selected.</p>
-            )}
-          </div>
-        </div>
-      );
+      const handleContinue = () => { if (selectedMethod) onNext(selectedMethod); else alert('Please select a payment method'); };
+      return (<div className="flex-1 bg-white text-black flex flex-col overflow-hidden"><div className="p-4 border-b border-gray-200 flex items-center"><button onClick={onBack} className="text-2xl mr-3">&larr;</button><h2 className="text-xl font-semibold">{t('paymentTitle')}</h2></div><div className="flex-1 overflow-y-auto p-5"><div className="border border-gray-300 rounded-xl overflow-hidden mb-5"><button onClick={()=>setExpanded(!expanded)} className="w-full flex items-center justify-between px-4 py-4 bg-gray-50"><span className="font-medium">{t('totalHKD')}</span><div className="flex items-center gap-3"><span className="text-lg font-semibold">${final}</span><span className="text-gray-500 text-xl">{expanded?'▲':'▼'}</span></div></button>{expanded && (<div className="p-4 space-y-2 border-t border-gray-200 bg-white"><div className="flex justify-between"><span>{t('caseCost')} ({cartItems.reduce((s,i)=>s+i.quantity,0)} x $10)</span><span>${subtotal}</span></div><div className="flex justify-between"><span>{t('tax')}</span><span>${tax}</span></div><div className="flex justify-between font-bold pt-2 border-t"><span>{t('total')}</span><span>${final}</span></div></div>)}</div>
+        <div className="mb-5"><div className="flex items-center justify-between mb-2"><span className="text-sm font-medium">Cart</span><span className="text-sm font-medium text-black">Payment</span><span className="text-sm text-gray-400">Confirm</span></div><div className="h-1.5 bg-gray-200 rounded-full"><div className="h-1.5 bg-black rounded-full w-2/3"></div></div></div>
+        <h3 className="font-medium mb-3">{t('howToPay')}</h3><div className="grid grid-cols-2 gap-3">{methods.map(m => (<button key={m.key} onClick={() => setSelectedMethod(m.key)} className={`border rounded-xl p-3 flex flex-col items-center gap-1 ${selectedMethod === m.key ? 'border-black bg-gray-100' : 'border-gray-300'}`}><span className="text-xl">{m.icon}</span><span className="text-sm">{m.label}</span></button>))}</div></div>
+        <div className="p-5 border-t border-gray-200"><button onClick={handleContinue} className="w-full bg-black text-white py-3 rounded-xl font-medium">{t('payNow')}</button></div></div>);
     };
 
-    // ---------- Credit Card Page (white bg) ----------
-    const CreditCardPage = ({ onBack }) => {
-      const { t } = useTranslation();
-      const [form, setForm] = useState({ name: '', number: '', expiry: '', cvv: '' });
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!form.name || !form.number || !form.expiry || !form.cvv) { alert('Please fill all fields'); return; }
-        alert('✅ Payment simulated — thank you!');
-        // navigate home or stay
-      };
-      return (
-        <div className="flex-1 bg-white text-black flex flex-col overflow-hidden">
-          <div className="p-4 border-b border-gray-200 flex items-center">
-            <button onClick={onBack} className="text-2xl mr-3">&larr;</button>
-            <h2 className="text-xl font-semibold">{t('creditCardTitle')}</h2>
-          </div>
-          <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-5 space-y-4">
-            <div><label className="block text-sm font-medium mb-1">{t('cardholderName')}</label><input type="text" value={form.name} onChange={e=>setForm({...form,name:e.target.value})} className="w-full border border-gray-300 rounded-lg px-4 py-3" placeholder="John Doe" /></div>
-            <div><label className="block text-sm font-medium mb-1">{t('cardNumber')}</label><input type="text" value={form.number} onChange={e=>setForm({...form,number:e.target.value})} className="w-full border border-gray-300 rounded-lg px-4 py-3" placeholder="1234 5678 9012 3456" /></div>
-            <div className="flex gap-3"><div className="flex-1"><label className="block text-sm font-medium mb-1">{t('expiryDate')}</label><input type="text" value={form.expiry} onChange={e=>setForm({...form,expiry:e.target.value})} className="w-full border border-gray-300 rounded-lg px-4 py-3" placeholder="MM/YY" /></div><div className="flex-1"><label className="block text-sm font-medium mb-1">{t('cvv')}</label><input type="text" value={form.cvv} onChange={e=>setForm({...form,cvv:e.target.value})} className="w-full border border-gray-300 rounded-lg px-4 py-3" placeholder="•••" /></div></div>
-            <div className="pt-4 flex gap-3"><button type="button" onClick={onBack} className="flex-1 py-3 border border-gray-300 rounded-full text-sm">{t('cancel')}</button><button type="submit" className="flex-1 py-3 bg-black text-white rounded-full text-sm font-medium">{t('submitPayment')}</button></div>
-          </form>
-        </div>
-      );
+    // ---------- Credit Card ----------
+    const CreditCardPage = ({ method, onBack, onSuccess }) => {
+      const { t } = useTranslation(); const { clearCart } = useCart();
+      const [cardholder, setCardholder] = useState(''); const [cardNumber, setCardNumber] = useState('');
+      const [expiry, setExpiry] = useState(''); const [cvv, setCvv] = useState('');
+      const handleSubmit = (e) => { e.preventDefault(); clearCart(); onSuccess(); };
+      return (<div className="flex-1 bg-white text-black flex flex-col overflow-hidden"><div className="p-4 border-b border-gray-200 flex items-center"><button onClick={onBack} className="text-2xl mr-3">&larr;</button><h2 className="text-xl font-semibold">{t('creditCardTitle')} ({method})</h2></div><form onSubmit={handleSubmit} className="flex-1 p-5 flex flex-col overflow-y-auto"><div className="space-y-4"><div><label className="block text-sm font-medium mb-1">{t('cardholderName')}</label><input type="text" value={cardholder} onChange={e=>setCardholder(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required /></div><div><label className="block text-sm font-medium mb-1">{t('cardNumber')}</label><input type="text" placeholder="1234 5678 9012 3456" value={cardNumber} onChange={e=>setCardNumber(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required /></div><div className="flex gap-3"><div className="flex-1"><label className="block text-sm font-medium mb-1">{t('expiry')}</label><input type="text" placeholder="MM/YY" value={expiry} onChange={e=>setExpiry(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required /></div><div className="flex-1"><label className="block text-sm font-medium mb-1">{t('cvv')}</label><input type="text" placeholder="123" value={cvv} onChange={e=>setCvv(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm" required /></div></div></div><div className="flex-1"></div><button type="submit" className="w-full bg-black text-white py-3 rounded-xl font-medium mt-4">{t('confirmPayment')}</button></form></div>);
     };
 
-    // ---------- Contact ----------
+    // ---------- Contact (with copyright) ----------
     const ContactScreen = () => { 
-      const contacts = [
-        { titleKey: 'pdManager', name: 'PD Dept. Manager', person: 'Jacky', email: 'jackylo@pdd.cx.co.hk' },
-        { titleKey: 'mrManager', name: 'MR Dept. Manager', person: 'Jackie', email: 'jackietsoi@mrd.cx.co.hk' },
-        { titleKey: 'secretary', name: 'Secretary', person: 'Dil Maya', email: 'maya@sec.cx.co.hk' },
-        { titleKey: 'boss', name: 'Boss', person: 'Victor Lee', email: 'victorlee@boss.cx.co.hk' }
-      ]; 
+      const contacts = [{ name: 'PD Dept. Manager', person: 'Jacky', email: 'jackylo@pdd.cx.co.hk' },{ name: 'MR Dept. Manager', person: 'Jackie', email: 'jackietsoi@mrd.cx.co.hk' },{ name: 'Secretary', person: 'Dil Maya', email: 'maya@sec.cx.co.hk' },{ name: 'Boss', person: 'Victor Lee', email: 'victorlee@boss.cx.co.hk' }]; 
       const { t } = useTranslation(); 
       return (
         <div className="flex-1 overflow-y-auto p-4 scrollable-contacts">
           <h1 className="text-2xl font-bold mb-1">{t('contactHeading')}</h1>
           <p className="text-neutral-400 text-sm mb-5">{t('contactSubtitle')}</p>
           <div className="space-y-3">
-            {contacts.map((c,i) => (
+            {contacts.map((c,i)=>(
               <div key={i} className="bg-neutral-900/70 border border-neutral-800 rounded-2xl p-4">
                 <p className="text-white font-medium">{c.name}</p>
                 <p className="text-lg text-white mt-0.5">{c.person}</p>
@@ -457,12 +522,15 @@
               </div>
             ))}
           </div>
+          <div className="mt-8 pt-4 border-t border-neutral-800 text-center">
+            <p className="text-neutral-500 text-xs">©Lo Mau Lam(Jacky)</p>
+          </div>
         </div>
       );
     };
 
     const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<LanguageProvider><App /></LanguageProvider>);
+    root.render(<LanguageProvider><AuthProvider><App /></AuthProvider></LanguageProvider>);
   </script>
 </body>
 </html>
